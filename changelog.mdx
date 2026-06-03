@@ -1,0 +1,47 @@
+---
+title: "Changelog"
+description: "Product updates and improvements"
+---
+
+<Update label="June 3, 2026">
+
+## New features
+
+**Relationship graph**
+
+Explore connections between notes visually. Phases 1 through 5 are live, covering core graph rendering through advanced filtering, grouping, and traversal controls in the Portal.
+
+**Notification bell**
+
+A new notification bell in the Portal surfaces background activity — brain dump completions, review proposals, and system events — without leaving your current view.
+
+**Hybrid search**
+
+AllKnower now combines vector similarity with keyword matching for higher-quality results on short queries and proper-noun lookups.
+
+## Updates
+
+**Content compaction and remediation shipped**
+
+The v1 roadmap items for note compaction and remediation are now generally available. Long lore entries are trimmed automatically, and stale or low-quality content can be flagged and rewritten in place.
+
+**Suggestion cache in AllKnower**
+
+Repeat suggestions return faster. AllKnower now caches recent suggestion results to reduce latency and OpenRouter usage.
+
+**Response style guidance**
+
+Brain dump and suggestion output follow updated style guidance for tone and structure, producing more consistent lore entries across notes.
+
+**React Compiler now stable**
+
+The Portal runs on React Compiler with full memoization automation. No action required — pages should feel snappier under heavy interaction.
+
+## Bug fixes
+
+- **Streaming reliability** — Fixed a streaming edge case in AllKnower that could truncate long responses.
+- **Schema parsing** — Zod now coerces `null` correctly in optional fields, eliminating spurious validation errors during brain dumps.
+- **Rate limiter scoping** — Rate limits are now scoped correctly per route group, so high-traffic endpoints no longer throttle unrelated requests.
+- **Portal stability** — Multiple test and rendering fixes landed in the Portal relationship graph and notification surfaces.
+
+</Update>
