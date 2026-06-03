@@ -1,0 +1,48 @@
+---
+title: "Changelog"
+description: "Product updates and improvements"
+---
+
+<Update label="June 3, 2026">
+
+## New features
+
+**Relationship graph**
+
+The Portal relationship view now renders with React Flow instead of Mermaid, giving you smoother pan-and-zoom, cleaner layouts, and consistent relation colors across the app.
+
+**Push notifications**
+
+Subscribe to push notifications from the Portal and get alerted when long-running AI jobs, suggestions, and shared updates land. Look for the new notification bell in the top navigation.
+
+**Streaming AI responses**
+
+AI responses now stream token-by-token in brain dump and entity views, so you see results as they're generated instead of waiting for the full reply.
+
+**Auto-relate on brain dump**
+
+When you save a brain dump, the system now automatically proposes relationships to existing entities. Suggestions are cached per content hash and deduplicated in flight, so repeat work is instant.
+
+## Updates
+
+**Hybrid search**
+
+Search now blends keyword and vector results using Reciprocal Rank Fusion, surfacing more relevant matches—especially for paraphrased or conceptual queries.
+
+**Relation suggestions cache**
+
+Suggestion responses are now cached and invalidated by content hash, with inflight deduplication. Expect faster repeat suggestions and lower latency on busy pages.
+
+**AllCodex Core clarified as server-only**
+
+We've updated the [AllCodex Core](/quickstart) framing to make it clear that Core is a server-only fork (no desktop client), runs on Node 22, and ships as a fixed set of packages.
+
+## Fixes
+
+- Fixed relation color sync between AllKnower and the Portal so colors stay consistent across views.
+- Fixed a streaming entity parsing issue and tightened Zod null coercion to prevent intermittent parse errors.
+- Fixed statblock rendering glitches in entity views.
+- Scoped Phase 5 graph queries by `userId` to prevent cross-tenant data exposure.
+- Tightened rate limiter scoping and hardened integration tests.
+
+</Update>
