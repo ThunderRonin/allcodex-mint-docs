@@ -3,6 +3,28 @@ title: "Changelog"
 description: "Product updates and improvements"
 ---
 
+<Update label="June 6, 2026">
+
+## New features
+
+**Single-owner authentication for AllKnower**
+
+AllKnower now ships with a single-owner authorization model. Email sign-up is gated behind a bootstrap secret, and the first account created becomes the persistent owner. All authenticated routes—including internal integrations endpoints—are now owner-only, so only the owner identity can read or write through the API.
+
+A new `/auth/owner-session` endpoint lets you verify the owner session from clients like the Portal.
+
+## Updates
+
+**Auto-provision hardened for production**
+
+The auto-provision route is now disabled in production environments to prevent accidental account creation outside of bootstrap.
+
+**Local Postgres port aligned to 5436**
+
+Local development now consistently uses PostgreSQL on port `5436` across the example env, Docker Compose, and the [quickstart](/quickstart). If you run a local stack, update your `DATABASE_URL` to match.
+
+</Update>
+
 <Update label="June 3, 2026">
 
 ## New features
