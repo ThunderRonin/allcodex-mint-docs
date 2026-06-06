@@ -3,6 +3,40 @@ title: "Changelog"
 description: "Product updates and improvements"
 ---
 
+<Update label="June 6, 2026">
+
+## New features
+
+**Public lore archive**
+
+The Portal homepage is now a public reading surface. Visitors who aren't signed in see your published lore at `/` and can open individual entries at `/public/lore/{id}` without an account. Anything you mark as shared in AllCodex Core shows up here automatically.
+
+**Owner-gated Portal**
+
+Writer tools (dashboard, brain dump, entities, AI views, settings) are now gated to the configured AllKnower owner account. Unauthenticated visits to private pages redirect to `/login?next=...`, and unauthenticated requests to private APIs return `401 LOGIN_REQUIRED`. Public lore routes and the login surface remain open.
+
+**Owner login page**
+
+A dedicated `/login` page collects the AllKnower URL, email, and password, then sets session cookies on success. Login only succeeds if the AllKnower session belongs to the owner account—non-owner sessions are rejected with `403 FORBIDDEN`.
+
+## Updates
+
+**Shared view publication status**
+
+The shared-content view now shows an explicit **Published** or **Not Shared** indicator per entry, so you can tell at a glance which lore is reachable from the public archive.
+
+**Share URLs link straight to the destination**
+
+Share links now point directly to the destination URL instead of going through a constructed redirect path.
+
+## Removed
+
+**Self-service sign-up disabled**
+
+Portal registration is no longer available. The Settings page no longer renders the AllKnower register form, and `POST /api/auth/register` now returns `403 FORBIDDEN` with the message _"Sign-up is disabled. Use the owner account."_ Provision accounts through AllKnower directly.
+
+</Update>
+
 <Update label="June 3, 2026">
 
 ## New features
