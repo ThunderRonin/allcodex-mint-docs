@@ -3,6 +3,42 @@ title: "Changelog"
 description: "Product updates and improvements"
 ---
 
+<Update label="June 6, 2026">
+
+## New features
+
+**Public lore pages**
+
+Published lore now has its own public, read-only pages and endpoints that anyone can view without signing in. Share a link and visitors can read the entry directly—no account required.
+
+**Owner login**
+
+The Portal now has a dedicated owner login page that gates access to private dashboards, settings, and shared views. Unauthenticated visitors are redirected to login for private surfaces and see published lore and the login page only.
+
+**Publication status in the share tree**
+
+The share tree now shows explicit **Published** and **Not Shared** indicators so you can tell at a glance which entries are live and which are still private.
+
+## Updates
+
+**Single-owner Portal**
+
+The Portal is now single-owner. Self-service sign-up and registration have been removed from the Portal and the Settings page, and login requires an existing AllKnower owner session before authentication cookies are issued. Private APIs now return `401` for requests without owner credentials.
+
+**AllKnower owner gate**
+
+AllKnower now enforces a single-owner gate, aligning its auth model with the Portal so the same owner session controls both services.
+
+**Simpler portal middleware**
+
+Access control for portal routes has been simplified, making redirects between public lore, login, and private pages more predictable.
+
+## Fixes
+
+- Share links now point directly to the destination URL instead of a constructed path, so opening a share lands you on the right page.
+
+</Update>
+
 <Update label="June 3, 2026">
 
 ## New features
