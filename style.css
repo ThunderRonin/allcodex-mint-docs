@@ -1,0 +1,45 @@
+/* Custom CSS overrides to increase typography sizing for better readability */
+
+/* Global base size */
+body {
+  font-size: 17px !important;
+}
+
+/* Main content container */
+#body-content {
+  font-size: 1.1rem !important;
+}
+
+/* Prose body elements */
+.prose p, 
+.prose li, 
+.prose table, 
+.prose td, 
+.prose th {
+  font-size: 1.0625rem !important; /* ~17px */
+  line-height: 1.8 !important;
+}
+
+/* Headings sizing */
+h1 {
+  font-size: 2.25rem !important;
+}
+
+h2 {
+  font-size: 1.6rem !important;
+}
+
+h3 {
+  font-size: 1.3rem !important;
+}
+
+/* Sidebar navigation links */
+nav a, 
+.sidebar a {
+  font-size: 0.95rem !important;
+}
+
+/* Inline code and code blocks */
+code, pre {
+  font-size: 0.925rem !important;
+}
