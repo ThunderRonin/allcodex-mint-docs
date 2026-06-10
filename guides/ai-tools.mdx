@@ -11,7 +11,7 @@ AllCodex includes three powerful analytical tools to help you maintain consisten
 
 As a campaign grows, it is easy to forget details you wrote months ago, leading to contradictions during play. The Consistency Checker scans your lore tree to ensure everything makes logical sense.
 
-### How it works:
+### How It Works
 1. **RAG Context Retrieval**: The checker uses your selected note as a starting point, retrieves conceptually related chunks from your database using vector search (RAG), and feeds them into the consistency analysis model.
 2. **Scan**: It looks for direct contradictions (e.g. NPC age discrepancies, dead characters suddenly appearing in recent session notes, or conflicting faction leaders).
 3. **Contradiction Reports**: It returns structured alerts detailing the exact notes involved and the logical contradiction detected, allowing you to resolve them immediately.
@@ -22,7 +22,7 @@ As a campaign grows, it is easy to forget details you wrote months ago, leading 
 
 The Relationship Suggester helps you interconnect your world by finding hidden narrative lines and suggesting canonical relationships between notes.
 
-### Features:
+### Features
 * **Automatic Suggestion**: When you view a note's relationship panel, the suggester automatically scans the note text and recommends connections to other entities (e.g. *ally*, *serves*, *located_in*, *member_of*).
 * **Caching & Deduplication**: To keep token usage low and performance high, suggestions are cached by content hash. Repeating a suggestion on an unmodified note is instant and costs zero tokens. In-flight suggestions are also deduplicated to prevent parallel LLM calls.
 * **Canonical Mapping**: Suggested relations strictly map to AllCodex's 17 canonical relationship types (e.g. `~relMemberOf`, `~relLocatedIn`). 
@@ -34,7 +34,7 @@ The Relationship Suggester helps you interconnect your world by finding hidden n
 
 The Gap Detector acts as your worldbuilding advisor, telling you which parts of your campaign prep need more development.
 
-### How to use it:
+### How to Use It
 1. **Select Scope**: Choose a note subtree (e.g. a continent location, a dungeon, or a list of quests).
 2. **Analysis**: The AI scans the description text and attribute density of the selected notes.
 3. **Actionable Suggestions**: It returns a list of areas that lack detail. For example:
