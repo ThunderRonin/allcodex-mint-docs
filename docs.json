@@ -85,12 +85,7 @@
         "label": "AllCodex GitHub",
         "href": "https://github.com/ThunderRonin/allcodex-aio"
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Launch Portal",
-      "href": "http://localhost:3000"
-    }
+    ]
   },
   "contextual": {
     "options": [
