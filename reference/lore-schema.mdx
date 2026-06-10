@@ -1,0 +1,106 @@
+---
+title: "Canonical Lore Schema"
+description: "Single source of truth for all label, attribute, and relation conventions."
+---
+
+This reference document outlines the schema conventions shared across AllCodex Core, AllKnower, and the Portal.
+
+---
+
+## Lore Types & Templates
+
+All lore notes are tagged with a `#lore` classification tag and a specific `#loreType` label. The `#loreType` value maps to one of the following built-in templates:
+
+| Type | Template ID | Description |
+| :--- | :--- | :--- |
+| `character` | `_template_character` | NPCs, PCs, historical figures |
+| `location` | `_template_location` | Cities, dungeons, regions, landmarks |
+| `faction` | `_template_faction` | Organizations with goals and leadership |
+| `creature` | `_template_creature` | Monsters, animals, entities with stat hints |
+| `event` | `_template_event` | Historical or in-world events |
+| `timeline` | `_template_timeline` | Ordered collection of events |
+| `manuscript` | `_template_manuscript` | In-world written works |
+| `statblock` | `_template_statblock` | D&D/TTRPG-style stat blocks |
+| `item` | `_template_item` | Magic items, artifacts, equipment |
+| `spell` | `_template_spell` | Spells and magical abilities |
+| `building` | `_template_building` | Structures — inns, towers, temples |
+| `language` | `_template_language` | Languages and writing systems |
+| `organization` | `_template_organization` | Guilds, governments, clubs |
+| `race` | `_template_race` | Playable and non-playable races/species |
+| `myth` | `_template_myth` | Legends, myths, folklore |
+| `cosmology` | `_template_cosmology` | Planes of existence, cosmic structures |
+| `deity` | `_template_deity` | Gods, demigods, divine beings |
+| `religion` | `_template_religion` | Faiths, cults, religious orders |
+| `session` | `_template_session` | Play session records |
+| `quest` | `_template_quest` | Quests, bounties, story hooks |
+| `scene` | `_template_scene` | Individual scenes within a session |
+
+---
+
+## Classification Labels
+
+These tags classify notes and control how they are parsed or displayed:
+
+| Label | Valid Values | Description |
+| :--- | :--- | :--- |
+| **`#lore`** | (valueless) | Marks a note as lore. **Required** for RAG vector indexing and general wiki searches. |
+| **`#loreType`** | See table above | Sets the specific lore category. |
+| **`#draft`** | (valueless) | Note is unpublished — hidden from public share output. |
+| **`#gmOnly`** | (valueless) | Note is GM-only — stripped from player share views and returned as 404. |
+| **`#quest`** | (valueless) | Special tag to flag a note as a quest/hook. |
+| **`#statblock`** | (valueless) | Special tag to flag a note as a statblock (used for quick lookup). |
+| **`#session`** | (valueless) | Special tag to flag a note as a session record. |
+
+---
+
+## Promoted Attributes by Type
+
+Promoted attributes appear as structured form inputs at the top of note pages in the Portal, matching the templates.
+
+* **`character`**: `fullName`, `aliases`, `age`, `race`, `gender`, `affiliation`, `role`, `status`, `secrets`, `goals`
+* **`location`**: `locationType`, `region`, `population`, `ruler`, `secrets`, `geolocation`
+* **`faction`**: `factionType`, `foundingDate`, `leader`, `goals`, `secrets`, `status`
+* **`creature`**: `creatureType`, `habitat`, `diet`, `dangerLevel`, `abilities`
+* **`event`**: `inWorldDate`, `outcome`, `consequences`, `secrets`
+* **`timeline`**: `calendarSystem` *(Note list sorting is driven by `#sorted` + `#sortBy=inWorldDate`)*
+* **`manuscript`**: `genre`, `manuscriptStatus`, `wordCount`
+* **`statblock`**: `crName`, `challengeRating`, `crLevel`, `creatureType`, `size`, `alignment`, `ac`, `hp`, `speed`, `str`, `dex`, `con`, `int`, `wis`, `cha`, `immunities`, `resistances`, `vulnerabilities`, `abilities`, `actions`, `legendaryActions`
+* **`item`**: `itemType`, `rarity`, `creator`, `magicProperties`, `history`
+* **`spell`**: `school`, `level`, `castingTime`, `range`, `components`, `duration`
+* **`building`**: `buildingType`, `owner`, `purpose`, `condition`, `secrets`
+* **`language`**: `languageFamily`, `speakers`, `script`, `samplePhrase`
+* **`organization`**: `orgType`, `purpose`, `foundingDate`, `leader`, `headquarters`, `status`, `secrets`
+* **`race`**: `racialType`, `homeland`, `physicalTraits`, `culture`, `languages`, `lifespan`, `abilities`
+* **`myth`**: `mythType`, `origin`, `tellers`, `truthBasis`, `significance`, `secrets`
+* **`cosmology`**: `domain`, `laws`, `source`, `planes`
+* **`deity`**: `domains`, `alignment`, `rank`, `symbol`, `worshippers`
+* **`religion`**: `deity`, `pantheon`, `tenets`, `clergy`, `holyDays`, `headquarters`
+* **`session`**: `sessionDate`, `players`, `sessionStatus`, `recap`, `hooks`, `gmNotes`
+* **`quest`**: `questStatus` (`active` \| `completed` \| `failed` \| `deferred`), `questGiver`, `reward`, `location`, `hooks`, `consequences`
+* **`scene`**: `location`, `participants`, `outcome`, `gmNotes`
+
+---
+
+## Canonical Relation Types
+
+The AI auto-relate pipeline suggests and applies these 17 bidirectional relationship types. Each is mapped to a Core relation attribute prefixed with `~rel`.
+
+| Canonical Type | Core Relation Name |
+| :--- | :--- |
+| `ally` | `~relAlly` |
+| `enemy` | `~relEnemy` |
+| `rival` | `~relRival` |
+| `family` | `~relFamily` |
+| `member_of` | `~relMemberOf` |
+| `leader_of` | `~relLeaderOf` |
+| `serves` | `~relServes` |
+| `located_in` | `~relLocatedIn` |
+| `originates_from` | `~relOriginatesFrom` |
+| `participated_in` | `~relParticipatedIn` |
+| `caused` | `~relCaused` |
+| `created` | `~relCreated` |
+| `owns` | `~relOwns` |
+| `wields` | `~relWields` |
+| `worships` | `~relWorships` |
+| `inhabits` | `~relInhabits` |
+| `related_to` | `~relRelatedTo` |

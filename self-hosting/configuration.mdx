@@ -1,0 +1,66 @@
+---
+title: "Configuration Reference"
+description: "Environment variables and model configuration options for all three services."
+---
+
+AllCodex services are configured using environment variables. Below is the complete reference matrix of available configuration variables.
+
+---
+
+## AllCodex Core (Database)
+
+Core configurations govern the database paths, ports, and default startup credentials.
+
+| Variable | Default | Description |
+| :--- | :--- | :--- |
+| `PORT` | `8080` | The port the Express HTTP server binds to on the host. |
+| `TRILIUM_DATA_DIR` | `/srv/allcodex/core-data` | Directory where SQLite files, backups, and configurations are stored. |
+| `ALLCODEX_PASSWORD`| (none) | Startup password for the database. **Required** for zero-login auto-provisioning. |
+| `USER_UID` | `999` | UID to run the server process as inside the container. |
+| `USER_GID` | `988` | GID to run the server process as inside the container. |
+
+---
+
+## AllKnower (AI Brain)
+
+AllKnower handles database models, connections to PostgreSQL/LanceDB, OpenRouter keys, and model selections.
+
+### System Settings
+
+| Variable | Default | Description |
+| :--- | :--- | :--- |
+| `PORT` | `3001` | The port the Elysia server binds to. |
+| `DATABASE_URL` | (none) | PostgreSQL connection URI for Prisma (accounts, history, and budgets). |
+| `OPENROUTER_API_KEY`| (none) | Your OpenRouter API Key. |
+| `PORTAL_INTERNAL_SECRET`| (none) | A secure, random token shared with the Portal to verify auto-provisioning. |
+| `LANCE_DB_PATH` | `/srv/allcodex/knower-data/lancedb` | Directory where LanceDB vector and FTS tables are persisted. |
+
+### Model Customizations
+
+You can override the models used by the AI engine for specific tasks. For each task, you can configure a primary model plus up to two fallback models.
+
+| Task | Variable | Default Model |
+| :--- | :--- | :--- |
+| **Brain Dump** | `BRAIN_DUMP_MODEL` | `x-ai/grok-4.1-fast` |
+| **Consistency Checker**| `CONSISTENCY_MODEL` | `moonshotai/kimi-k2.5` |
+| **Relationship Suggester**| `SUGGEST_MODEL` | `aion-labs/aion-2.0` |
+| **Gap Detector** | `GAP_DETECT_MODEL` | `aion-labs/aion-2.0` |
+| **Autocomplete** | `AUTOCOMPLETE_MODEL` | `liquid/lfm-24b` |
+| **Embeddings** | `EMBEDDING_MODEL` | `qwen/qwen3-embedding-8b` |
+| **Rerank** | `RERANK_MODEL` | `cohere/rerank-4-pro` |
+
+* **Fallback Syntax**: Append `_FALLBACK_1` or `_FALLBACK_2` to any model key (e.g. `BRAIN_DUMP_MODEL_FALLBACK_1=google/gemini-2.5-pro`).
+* **Auto Route**: Set `USE_OPENROUTER_AUTO=true` to let OpenRouter automatically select the best model for all tasks.
+
+---
+
+## AllCodex Portal (Frontend)
+
+Portal variables configure connections to the backends and shared secret handshakes.
+
+| Variable | Default | Description |
+| :--- | :--- | :--- |
+| `PORT` | `3000` | Port the Next.js production server runs on. |
+| `ALLCODEX_URL` | `http://localhost:8080` | The private network URL of the running AllCodex Core container. |
+| `ALLKNOWER_URL` | `http://localhost:3001` | The private network URL of the running AllKnower container. |
+| `PORTAL_INTERNAL_SECRET`| (none) | **Critical.** Must match `PORTAL_INTERNAL_SECRET` in AllKnower to authorize session cookies. |

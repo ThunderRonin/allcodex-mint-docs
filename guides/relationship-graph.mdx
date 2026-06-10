@@ -1,0 +1,34 @@
+---
+title: "Visual Relationship Graph"
+description: "Navigate and explore your worldbuilding connections on an interactive canvas."
+---
+
+AllCodex features an interactive visual graph to help you visualize how your characters, factions, locations, and events interconnect. Built on **React Flow**, the graph provides a clean, draggable canvas that turns list-based attributes into a narrative map.
+
+---
+
+## Accessing the Graph
+
+The graph is available on two surfaces:
+1. **Global Graph View**: A full-screen canvas displaying all nodes in your grimoire and all of their active relationships.
+2. **Entity Detail Graph**: A contextual tab on any individual lore note showing the graph centered on that specific note.
+
+---
+
+## Key Features
+
+### Draggable, Zoomable Canvas
+* **Navigation**: Drag to pan across the graph. Use your mouse wheel or trackpad to zoom in and out.
+* **Layout**: Nodes are colored based on their `loreType` (e.g. gold for characters, blue for locations, purple for factions).
+* **Details**: Clicking any node opens a preview panel displaying its description and primary attributes, allowing you to traverse your wiki visually.
+
+### The Filter Bar
+If your world has hundreds of notes, the graph can get busy. Use the Filter Bar to toggle:
+* **Node Types**: Show only characters and factions to visualize political relationships, or show only locations and buildings to see geography.
+* **Relation Types**: Filter by specific relations (e.g. show only `~relEnemy` to see conflicts, or only `~relLocatedIn` to see locations).
+
+### Multi-Hop Traversal
+When viewing the graph from a specific note, you can configure the **Hop Count**:
+* **1 Hop (Default)**: Shows only entities directly related to the current note.
+* **2 Hops**: Shows the current note, its immediate neighbors, and *their* neighbors. Excellent for finding how two distant NPCs might be connected through a mutual contact or faction.
+* **3 Hops**: Renders a wider web of secondary and tertiary connections.

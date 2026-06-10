@@ -1,0 +1,132 @@
+---
+title: "Docker Compose Deployment"
+description: "Deploy the full AllCodex stack in minutes using Docker Compose."
+---
+
+Deploying AllCodex via Docker Compose is the recommended method for production self-hosting. It runs the three services in isolated containers while mapping their data folders and network interfaces to the host.
+
+---
+
+## 1. Directory Structure
+
+Create a directory on your host server to contain the configuration and data folders:
+
+```bash
+mkdir -p allcodex-grimoire
+cd allcodex-grimoire
+```
+
+---
+
+## 2. Docker Compose File
+
+Create a `docker-compose.yml` file:
+
+```yaml docker-compose.yml
+version: '3.8'
+
+services:
+  core:
+    image: ghcr.io/thunderronin/allcodex-core:dev
+    container_name: allcodex-core
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - TRILIUM_DATA_DIR=/srv/allcodex/core-data
+      - USER_UID=999
+      - USER_GID=988
+    env_file:
+      - /etc/allcodex/core.env
+    volumes:
+      - /srv/allcodex:/srv/allcodex
+
+  knower:
+    image: ghcr.io/thunderronin/allknower:dev
+    container_name: allknower
+    restart: unless-stopped
+    network_mode: host
+    env_file:
+      - /etc/allcodex/allknower.env
+    volumes:
+      - /srv/allcodex:/srv/allcodex
+
+  portal:
+    image: ghcr.io/thunderronin/allcodex-portal:dev
+    container_name: allcodex-portal
+    restart: unless-stopped
+    network_mode: host
+    env_file:
+      - /etc/allcodex/portal.env
+```
+
+---
+
+## 3. Creating Environment Files
+
+AllCodex reads configurations from environment files located in `/etc/allcodex/`. Create the directory and files:
+
+```bash
+sudo mkdir -p /etc/allcodex /srv/allcodex
+sudo touch /etc/allcodex/core.env /etc/allcodex/allknower.env /etc/allcodex/portal.env
+```
+
+### Core Environment Configuration (`core.env`)
+Configure Core to listen on port 8080:
+
+```env /etc/allcodex/core.env
+PORT=8080
+ALLCODEX_PASSWORD=your_secure_db_admin_password
+```
+
+### AllKnower Environment Configuration (`allknower.env`)
+Provide database connection details and your OpenRouter API key:
+
+```env /etc/allcodex/allknower.env
+PORT=3001
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/allknower?schema=public
+OPENROUTER_API_KEY=your_openrouter_api_key
+PORTAL_INTERNAL_SECRET=generate_a_long_random_string_here
+```
+
+### Portal Environment Configuration (`portal.env`)
+Point the Portal to Core and AllKnower:
+
+```env /etc/allcodex/portal.env
+PORT=3000
+ALLCODEX_URL=http://localhost:8080
+ALLKNOWER_URL=http://localhost:3001
+PORTAL_INTERNAL_SECRET=must_match_the_allknower_internal_secret_above
+```
+
+---
+
+## 4. Starting the Containers
+
+Run the compose file to pull images and start the services:
+
+```bash
+docker compose up -d
+```
+
+Verify that all three services are running:
+
+```bash
+docker compose ps
+```
+
+---
+
+## 5. Checking Logs
+
+If you encounter issues, check the container logs:
+
+```bash
+# Core Database Logs
+docker logs allcodex-core --tail 50
+
+# AI Backend Logs
+docker logs allknower --tail 50
+
+# Web Portal Logs
+docker logs allcodex-portal --tail 50
+```

@@ -1,47 +1,137 @@
 ---
 title: "Quickstart"
-description: "Begin with a guide on the fastest path to a successful outcome"
+description: "Launch your AllCodex grimoire and run your first AI brain dump in minutes."
 ---
 
-Describe how someone begins using your product. What is the first thing they need to do? Are there any prerequisites?
+AllCodex can be launched either via **Docker Compose** (recommended for self-hosting) or **Local Development** (recommended for developers).
 
-A quickstart should take someone from zero to using your product. They'll get a quick win and a sense of what they can accomplish.
+---
 
-## Prerequisites
+## Method 1: Docker Compose (Self-Hosting)
 
-Before you begin, you must have:
+This is the fastest path to running the full AllCodex ecosystem.
 
-- Requirement one (for example, Node.js 18+, a free account, an API key)
-- Requirement two (for example, a compatible device, a compatible browser, a compatible operating system)
+### Prerequisites
 
-## Get started
+- [Docker](https://docs.docker.com/get-docker/) installed.
+- An [OpenRouter API Key](https://openrouter.ai/) (required by AllKnower for AI features).
+
+### 1. Download the Docker Compose file
+
+Create a directory for AllCodex and download `docker-compose.yml`:
+
+```bash
+mkdir allcodex-grimoire && cd allcodex-grimoire
+curl -sSL https://raw.githubusercontent.com/ThunderRonin/allcodex-aio/main/docker-compose.yml -o docker-compose.yml
+```
+
+### 2. Configure Environment Variables
+
+Create the env directories and configuration files:
+
+```bash
+sudo mkdir -p /etc/allcodex
+sudo touch /etc/allcodex/core.env /etc/allcodex/allknower.env /etc/allcodex/portal.env
+```
+
+Add your `OPENROUTER_API_KEY` to `/etc/allcodex/allknower.env`:
+```env
+OPENROUTER_API_KEY=your_api_key_here
+```
+
+### 3. Launch the Stack
+
+Run the compose file in detached mode:
+
+```bash
+docker compose up -d
+```
+
+---
+
+## Method 2: Local Development (mprocs)
+
+Use this method if you want to run the codebase from source or contribute to AllCodex.
+
+### Prerequisites
+
+- **Node.js v22.x** (AllCodex Core requires Node v22; Node v26 is not supported due to native DB bindings).
+- **Bun** (required by AllKnower and Portal).
+- **pnpm v10+** (required by Core).
+- **PostgreSQL** running locally.
+- **mprocs** (`npm install -g mprocs` or `brew install mprocs`) to orchestrate the services.
+
+### 1. Clone the Repository (with Submodules)
+
+Ensure you pull all submodules during cloning:
+
+```bash
+git clone --recurse-submodules https://github.com/ThunderRonin/allcodex-aio.git
+cd allcodex-aio
+```
+
+### 2. Install Dependencies & Build
+
+```bash
+# Install root package & setup submodules
+pnpm install
+```
+
+### 3. Setup AllKnower Env
+
+Copy `.env.example` in `allknower` to `.env` and fill in your PostgreSQL URL and OpenRouter key:
+
+```bash
+cd allknower
+cp .env.example .env
+# Edit .env with your favorite editor
+bun db:generate && bun db:migrate
+cd ..
+```
+
+### 4. Run all services with mprocs
+
+From the repository root directory, run:
+
+```bash
+mprocs
+```
+
+This launches:
+- **AllCodex Portal** on [http://localhost:3000](http://localhost:3000)
+- **AllKnower** on [http://localhost:3001](http://localhost:3001)
+- **AllCodex Core** on [http://localhost:8080](http://localhost:8080)
+
+---
+
+## Zero-Login Auto-Provisioning
+
+On your very first run, AllCodex performs an automatic boot-chain:
+1. **Core** sets its admin password automatically from environment configurations.
+2. **AllKnower** automatically registers a default owner account, obtains an ETAPI security token from Core, and encrypts it at rest.
+3. **Portal** intercepts your first visit, retrieves the owner session, and logs you in automatically.
+
+Simply open your browser to [http://localhost:3000](http://localhost:3000) and you are ready to write.
+
+---
+
+## Your First Brain Dump
+
+Once in the Portal, follow these steps to see the AI in action:
 
 <Steps>
-  <Step title="Install">
-    Describe how to install your product or sign up.
-
-    ```bash
-    npm install your-package
-    ```
+  <Step title="Write or paste raw text">
+    Click the **Brain Dump** tab in the Portal. Paste a rough description of an NPC, location, or historical event.
+    *Example:*
+    > "Lord Michael Ashvane is an aging paladin of the Dawn Shield faction. He guards Blackstone Keep in the eastern marches of Solara."
   </Step>
-  <Step title="Configure">
-    Describe any setup or configuration needed before first use.
-
-    ```bash
-    your-cli init
-    ```
+  <Step title="Process the Dump">
+    Click **Submit**. You will see the AI start to stream entities (like *Lord Michael Ashvane*, *Dawn Shield*, *Blackstone Keep*, *Solara*) on screen.
   </Step>
-  <Step title="Run it">
-    Show the first thing a user does to see it working.
-
-    ```bash
-    your-cli start
-    ```
+  <Step title="Apply the Lore">
+    Click **Apply to Database**. The AI will create separate notes for each entity in AllCodex Core, link them to templates, and attach canonical attributes (like `#loreType = "character"` and `affiliation = "Dawn Shield"`).
+  </Step>
+  <Step title="View the Graph">
+    Go to the **Relationship Graph** tab. You'll see the newly created entities connected on an interactive React Flow canvas.
   </Step>
 </Steps>
-
-<Tip>
-  Give people a way to get help. This could be a link to a support page, a chat with a customer support agent, or a forum for your product.
-
-  Example: Need help? Reach out to us at [support@yourcompany.com](mailto:support@yourcompany.com).
-</Tip>
