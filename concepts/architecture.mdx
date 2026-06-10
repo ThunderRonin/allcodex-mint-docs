@@ -71,7 +71,7 @@ To make self-hosting painless, AllCodex includes a zero-login bootstrap chain:
     On startup, AllCodex Core reads the `ALLCODEX_PASSWORD` environment variable and auto-configures its administrator password.
   </Step>
   <Step title="AllKnower Startup">
-    AllKnower checks if a default administrator exists. If not, it creates a default account, executes a loopback authentication call to AllCodex Core using the startup password, generates an ETAPI token, and stores it as an encrypted `UserIntegration` record in its Postgres database.
+    AllKnower checks if a default administrator exists. If not, it creates a default account and runs a loopback authentication call to AllCodex Core using the startup password. It then generates an ETAPI token and stores it as an encrypted `UserIntegration` record in its Postgres database.
   </Step>
   <Step title="Portal Intercept">
     When a browser first visits the Portal, Next.js middleware detects that the `allknower_token` cookie is missing. It calls AllKnower's internal `/internal/auto-provision` route using a shared portal secret, retrieves a session token for the bootstrapped default user, and sets it as an HTTP-only cookie in the user's browser.
