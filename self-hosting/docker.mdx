@@ -119,8 +119,9 @@ PORTAL_INTERNAL_SECRET=generate_a_long_random_string_here
 INTEGRATION_CREDENTIALS_KEY=generate_a_64_character_hexadecimal_string_here
 ```
 
-> [!IMPORTANT]
-> The `INTEGRATION_CREDENTIALS_KEY` is a 32-byte key (represented as a 64-character hex string) used to encrypt your AllCodex ETAPI tokens at rest in the PostgreSQL database. **Keep this safe.**
+<Warning>
+  The `INTEGRATION_CREDENTIALS_KEY` is a 32-byte key (represented as a 64-character hex string) used to encrypt your AllCodex ETAPI tokens at rest in the PostgreSQL database. **Keep this safe.**
+</Warning>
 
 ### Portal Configuration (`portal.env`)
 Configure the Portal to point to the backend services:
