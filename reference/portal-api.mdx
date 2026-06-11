@@ -3,25 +3,25 @@ title: "Portal API Proxy"
 description: "Reference guide for all AllCodex Portal Next.js API proxy routes."
 ---
 
-The Portal acts as a secure Backend for Frontend (BFF) proxy. The browser never communicates directly with the database (AllCodex Core) or the AI brain (AllKnower). It sends requests to `/api/*` on the Portal, which parses authentication cookies server-side and forwards requests to the private backends.
+The Portal acts as a Backend for Frontend (BFF) proxy. The browser does not communicate directly with the database (AllCodex Core) or the AI brain (AllKnower). It sends requests to `/api/*` on the Portal, which parses authentication cookies server-side and forwards requests to private backends.
 
 ---
 
 ## Credential flow
 
-All backend calls resolve credentials from HTTP-only cookies via `getEtapiCreds()` and `getAkCreds()` (defined in `lib/get-creds.ts`). If cookies are not set, the route falls back to environment variables in `.env.local`. The browser never sees tokens.
+All backend calls resolve credentials from HTTP-only cookies via `getEtapiCreds()` and `getAkCreds()` (defined in `lib/get-creds.ts`). If cookies are not set, the route falls back to environment variables in `.env.local`. The browser does not receive tokens.
 
 ```
 Browser  →  POST /api/auth/login or /api/config/allknower-login  (AllKnower: email/password → Bearer token)
          →  HTTP-only cookies set (allknower_url, allknower_token)
          →  POST /api/integrations/allcodex/connect  (Core: password → ETAPI token,
               stored as the user's encrypted UserIntegration inside AllKnower)
-         →  All subsequent /api/* calls read the AllKnower token from cookies; Core creds
+         →  Subsequent /api/* calls read the AllKnower token from cookies; Core creds
               are resolved server-side per-user by AllKnower
 ```
 
 <Warning>
-  **Zero-login auto-provisioning**: In dev/zero-login deployments, the AllKnower token cookie is set automatically by the auto-provisioning middleware, and Core credentials are bootstrapped into the default user's `UserIntegration` — so neither step above is required for the first user.
+  **Zero-login auto-provisioning**: In dev/zero-login deployments, the auto-provisioning middleware sets the AllKnower token cookie, and Core credentials are bootstrapped into the default user's `UserIntegration` — so neither step above is required for the first user.
 </Warning>
 
 ---
@@ -306,6 +306,6 @@ Web-push notifications (e.g. brain dump completion status).
 
 1. **Proxy architecture**: Every `/api/*` route is a thin proxy. No domain logic lives in the Portal.
 2. **Error handling**: Routes call `notConfigured()` when credentials are missing and `handleRouteError()` for exceptions.
-3. **HTML sanitization**: Portal performs DOMPurify sanitization. Never assume content from ETAPI is safe for direct HTML insertion.
+3. **HTML sanitization**: The Portal performs DOMPurify sanitization. Do not assume content from ETAPI is safe for direct HTML insertion.
 4. **Content-Type constraint**: PUT requests to `/api/lore/[id]/content` **must** use `Content-Type: text/plain` due to Express raw-parser behavior in Core.
-5. **Cookie-only secrets**: All tokens are stored in HTTP-only cookies. The browser JS never has access to credentials.
+5. **Cookie-only secrets**: The system stores all tokens in HTTP-only cookies. Browser JavaScript does not have access to credentials.

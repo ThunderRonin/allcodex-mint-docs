@@ -3,7 +3,7 @@ title: "RAG & Hybrid Search"
 description: "How AllCodex fuses semantic vector search with keyword retrieval for smart search queries."
 ---
 
-AllCodex uses a state-of-the-art **hybrid search engine** to query your lore. Rather than relying on simple keyword matching (which misses paraphrased ideas) or vector search (which can miss specific proper nouns), AllCodex fuses both methods.
+AllCodex uses a **hybrid search engine** that fuses semantic vector search with keyword retrieval.
 
 ---
 
@@ -37,21 +37,21 @@ When you search for something in the Portal or when the AI retrieves lore contex
 ## 1. Vector search (LanceDB)
 AllKnower maintains an embedded, in-process **LanceDB** database.
 * **Embeddings**: When you create or update a note, AllKnower chunkifies the note content and generates 4096-dimensional vectors using `qwen/qwen3-embedding-8b` via OpenRouter.
-* **Semantic retrieval**: LanceDB performs vector similarity searches, letting you find relevant notes even if they use completely different words. For example, searching for *"rulers of the elven wood"* will retrieve notes mentioning *"leaders of the sylvan canopy"* without needing exact keyword matches.
+* **Semantic retrieval**: LanceDB performs vector similarity searches, letting you find relevant notes using different vocabulary. For example, searching for *"rulers of the elven wood"* retrieves notes mentioning *"leaders of the sylvan canopy"*, avoiding the need for exact keyword matches.
 
 ---
 
 ## 2. Full-text keyword search (SQLite BM25)
-To ensure proper nouns (like character names, unique spells, or specific item titles) are never lost due to vector approximations, AllKnower queries AllCodex Core's SQLite Full-Text Search (FTS5) engine. This uses the **BM25 algorithm** to score notes based on literal term frequency and inverse document frequency.
+To retain proper nouns (such as character names, unique spells, or specific item titles) that vector approximations might miss, AllKnower queries AllCodex Core's SQLite Full-Text Search (FTS5) engine. This engine uses the **BM25 algorithm** to score notes by term frequency and inverse document frequency.
 
 ---
 
 ## 3. Reciprocal rank fusion (RRF)
-The candidate sets from both LanceDB and SQLite are merged using Reciprocal Rank Fusion (RRF). RRF scores candidates based on their rank in each separate search list rather than their raw scores:
+The candidate sets from both LanceDB and SQLite are merged using Reciprocal Rank Fusion (RRF). RRF scores candidates by their rank in each search list instead of raw scores:
 
 $$RRF\_Score(d) = \sum_{m \in M} \frac{1}{k + r_m(d)}$$
 
-Where $r_m(d)$ is the rank of document $d$ in system $m$, and $k$ is a constant (typically 60) used to mitigate the impact of low-ranked outliers. RRF consistently outperforms either search method alone.
+Where $r_m(d)$ is the rank of document $d$ in system $m$, and $k$ is a constant (typically 60) used to mitigate the impact of low-ranked outliers. RRF outperforms either search method alone.
 
 ---
 

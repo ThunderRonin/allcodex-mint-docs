@@ -3,7 +3,7 @@ title: "Sharing Lore with Players"
 description: "How to publish public, player-safe wikis from your grimoire."
 ---
 
-AllCodex includes a powerful share rendering engine. You can publish a folder or branch of your lore tree as a public, read-only website for your players. Secret GM notes and draft content stay completely hidden.
+AllCodex includes a share rendering engine. You can publish a folder or branch of your lore tree as a public, read-only website for your players. Secret GM notes and draft content stay completely hidden.
 
 ---
 
@@ -33,16 +33,16 @@ You can fine-tune how shared trees behave by adding these canonical labels to yo
 
 ## Hiding secret GM content
 
-You don't have to maintain separate "player" and "GM" wikis. AllCodex allows you to mix player-safe lore and GM secrets in the same notes, using two gating mechanisms:
+Mix player-safe lore and GM secrets in the same notes using two gating mechanisms:
 
 ### Note-level gates
-* **`#draft` tag**: If you add `#draft` to a note, it will be completely hidden from the public share navigation, even if it lives inside a shared folder.
-* **`#gmOnly` tag**: If you add `#gmOnly` to a note, it will return a `404 Not Found` to any public visitor, keeping your secrets secure.
+* **`#draft` tag**: Notes with this tag are hidden from public share navigation, even when placed inside a shared folder.
+* **`#gmOnly` tag**: Notes with this tag return a `404 Not Found` error to public visitors, keeping secrets secure.
 
 ### Section-level gates (HTML classes)
-If you want players to read a note's general description but hide specific spoilers, you can gate individual paragraphs, lists, or tables:
-* Wrap your secrets in a container with the CSS class **`.gm-only`**.
-* The Core share renderer automatically parses note HTML at output time and **strips out any element containing the `.gm-only` class** before sending it to public visitors.
+Gate individual paragraphs, lists, or tables to show general descriptions while hiding specific spoilers:
+* Wrap secrets in a container with the CSS class **`.gm-only`**.
+* The Core share renderer parses note HTML at output time and **strips elements containing the `.gm-only` class** before sending the page to public visitors.
 
 ```html
 <p>Commander Vane is a legendary general.</p>

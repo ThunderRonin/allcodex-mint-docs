@@ -49,26 +49,26 @@ The Portal now has a dedicated owner login page that gates access to private das
 
 **Publication status in the share tree**
 
-The share tree now shows explicit **Published** and **Not Shared** indicators so you can tell at a glance which entries are live and which are still private.
+The share tree now shows explicit **Published** and **Not Shared** indicators, making it clear which entries are live and which are private.
 
 ## Updates
 
 **Single-owner Portal**
 
-The Portal is now single-owner. Self-service sign-up and registration have been removed from the Portal and the Settings page, and login requires an existing AllKnower owner session before authentication cookies are issued. Private APIs now return `401` for requests without owner credentials.
+We removed self-service sign-up and registration from the Portal and Settings pages. Login requires an existing AllKnower owner session before authentication cookies are issued. Private APIs return `401` for requests without owner credentials.
 
 **AllKnower owner gate**
 
-AllKnower now enforces a single-owner gate, aligning its auth model with the Portal so the same owner session controls both services.
+AllKnower enforces a single-owner gate, aligning its authentication model with the Portal.
 
 **Simpler portal middleware**
 
-Access control for portal routes has been simplified, making redirects between public lore, login, and private pages more predictable.
+We simplified access control for portal routes, simplifying redirects between public lore, login, and private pages.
 
 ## Fixes
 
-- Share links now point directly to the destination URL instead of a constructed path, so opening a share lands you on the right page.
-- Third-party model pricing from OpenRouter is now bounded and rounded before storage, fixing an issue that could cause pricing updates to fail silently for some models.
+- Share links point directly to the destination URL instead of a constructed path, landing visitors on the correct page.
+- The system bounds and rounds third-party model pricing from OpenRouter before storage. This resolves an issue that caused pricing updates to fail for some models.
 
 </Update>
 
@@ -78,33 +78,33 @@ Access control for portal routes has been simplified, making redirects between p
 
 **Relationship graph**
 
-The Portal relationship view now renders with React Flow instead of Mermaid, giving you smoother pan-and-zoom, cleaner layouts, and consistent relation colors across the app.
+The Portal relationship view renders with React Flow instead of Mermaid, providing pan-and-zoom, cleaner layouts, and consistent relation colors across the app.
 
 **Push notifications**
 
-Subscribe to push notifications from the Portal and get alerted when long-running AI jobs, suggestions, and shared updates land. Look for the new notification bell in the top navigation.
+Subscribe to push notifications from the Portal to receive alerts when AI jobs, suggestions, and shared updates finish. A notification bell is now in the top navigation.
 
 **Streaming AI responses**
 
-AI responses now stream token-by-token in brain dump and entity views, so you see results as they're generated instead of waiting for the full reply.
+AI responses stream token-by-token in brain dump and entity views, displaying results during generation instead of waiting for the full response.
 
 **Auto-relate on brain dump**
 
-When you save a brain dump, the system now automatically proposes relationships to existing entities. Suggestions are cached per content hash and deduplicated in flight, so repeat work is instant.
+When you save a brain dump, the system proposes relationships to existing entities. Suggestions are cached by content hash and deduplicated in flight, making repeat queries faster.
 
 ## Updates
 
 **Hybrid search**
 
-Search now blends keyword and vector results using Reciprocal Rank Fusion, surfacing more relevant matches—especially for paraphrased or conceptual queries.
+Search blends keyword and vector results using Reciprocal Rank Fusion, surfacing relevant matches for paraphrased or conceptual queries.
 
 **Relation suggestions cache**
 
-Suggestion responses are now cached and invalidated by content hash, with inflight deduplication. Expect faster repeat suggestions and lower latency on busy pages.
+The system caches and invalidates suggestion responses by content hash, with inflight deduplication. This increases suggestion speed and reduces latency.
 
 **AllCodex Core clarified as server-only**
 
-We've updated the [AllCodex Core](/quickstart) framing to make it clear that Core is a server-only fork (no desktop client), runs on Node 22, and ships as a fixed set of packages.
+Documentation updates clarify that AllCodex Core is a server-only fork (no desktop client), runs on Node 22, and ships as a fixed set of packages.
 
 ## Fixes
 

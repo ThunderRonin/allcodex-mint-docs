@@ -3,13 +3,13 @@ title: "Configuration Reference"
 description: "Environment variables and model configuration options for all three services."
 ---
 
-AllCodex services are configured using environment variables. Below is the complete reference matrix of available configuration variables.
+AllCodex services use environment variables for configuration. The following tables list the available variables.
 
 ---
 
 ## AllCodex Core (database)
 
-Core configurations govern the database paths, ports, and default startup credentials.
+These variables configure database paths, ports, and startup credentials.
 
 | Variable | Default | Description |
 | :--- | :--- | :--- |
@@ -23,7 +23,7 @@ Core configurations govern the database paths, ports, and default startup creden
 
 ## AllKnower (AI brain)
 
-AllKnower handles database models, connections to PostgreSQL/LanceDB, OpenRouter keys, and model selections.
+These variables configure database models, connections, OpenRouter keys, and model selections.
 
 ### System settings
 
@@ -37,7 +37,7 @@ AllKnower handles database models, connections to PostgreSQL/LanceDB, OpenRouter
 | `PORTAL_INTERNAL_SECRET`| (none) | A secure, random token shared with the Portal to verify auto-provisioning. |
 | `BETTER_AUTH_SECRET` | (none) | Secret used by better-auth to sign cookies and tokens. Must be $\ge 16$ characters in production. |
 | `BETTER_AUTH_URL` | `http://localhost:3001` | The canonical URL of the AllKnower auth server. |
-| `INTEGRATION_CREDENTIALS_KEY`| (none) | **Critical in production.** A 32-byte key (represented as a 64-character hex string) used to encrypt database credentials at rest. |
+| `INTEGRATION_CREDENTIALS_KEY`| (none) | **Critical in production.** A 32-byte key (represented as a 64-character hex string) that encrypts database credentials at rest. |
 
 ### Web push and email notifications
 
@@ -49,9 +49,7 @@ AllKnower handles database models, connections to PostgreSQL/LanceDB, OpenRouter
 | `RESEND_API_KEY` | (none) | Resend email delivery API key. |
 | `RESEND_FROM_EMAIL`| `noreply@allcodex.local` | The email address from which budget alerts are sent. |
 
-### Model customizations
-
-You can override the models used by the AI engine for specific tasks. For each task, you can configure a primary model plus up to three fallback models.
+Override the default models for specific tasks. Each task supports a primary model and up to three fallback models.
 
 | Task | Variable | Default Model |
 | :--- | :--- | :--- |
@@ -70,7 +68,7 @@ You can override the models used by the AI engine for specific tasks. For each t
 
 ## AllCodex Portal (frontend)
 
-Portal variables configure connections to the backends and shared secret handshakes.
+These variables configure connections to backend services and secret handshakes.
 
 | Variable | Default | Description |
 | :--- | :--- | :--- |

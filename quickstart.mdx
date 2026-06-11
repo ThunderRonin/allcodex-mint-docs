@@ -58,7 +58,7 @@ Use this method if you want to run the codebase from source or contribute to All
 - **Node.js v22.x** (AllCodex Core requires Node v22; Node v26 is not supported due to native DB bindings).
 - **Bun** (required by AllKnower and Portal).
 - **pnpm v10+** (required by Core).
-- **PostgreSQL** running locally.
+- **PostgreSQL** running on your local machine.
 - **mprocs** (`npm install -g mprocs` or `brew install mprocs`) to orchestrate the services.
 
 ### 1. Clone the repository (with submodules)
@@ -107,11 +107,11 @@ This launches:
 ## Zero-login auto-provisioning
 
 On your very first run, AllCodex performs an automatic boot-chain:
-1. **Core** sets its admin password automatically from environment configurations.
-2. **AllKnower** automatically registers a default owner account, obtains an ETAPI security token from Core, and encrypts it at rest.
-3. **Portal** intercepts your first visit, retrieves the owner session, and logs you in automatically.
+1. **Core** sets its admin password from environment configurations.
+2. **AllKnower** registers a default owner account, obtains an ETAPI security token from Core, and encrypts it at rest.
+3. **Portal** intercepts your first visit, retrieves the owner session, and logs you in.
 
-Simply open your browser to [http://localhost:3000](http://localhost:3000) and you are ready to write.
+Open your browser to [http://localhost:3000](http://localhost:3000) to begin writing.
 
 ---
 
@@ -126,12 +126,12 @@ Once in the Portal, follow these steps to see the AI in action:
     > "Lord Michael Ashvane is an aging paladin of the Dawn Shield faction. He guards Blackstone Keep in the eastern marches of Solara."
   </Step>
   <Step title="Process the dump">
-    Click **Submit**. You will see the AI start to stream entities (like *Lord Michael Ashvane*, *Dawn Shield*, *Blackstone Keep*, *Solara*) on screen.
+    Click **Submit**. The AI streams entities (such as *Lord Michael Ashvane*, *Dawn Shield*, *Blackstone Keep*, *Solara*) on screen.
   </Step>
   <Step title="Apply the lore">
-    Click **Apply to Database**. The AI will create separate notes for each entity in AllCodex Core, link them to templates, and attach canonical attributes (like `#loreType = "character"` and `affiliation = "Dawn Shield"`).
+    Click **Apply to Database**. The AI creates separate notes for each entity in AllCodex Core, links them to templates, and attaches canonical attributes (like `#loreType = "character"` and `affiliation = "Dawn Shield"`).
   </Step>
   <Step title="View the graph">
-    Go to the **Relationship Graph** tab. You'll see the newly created entities connected on an interactive React Flow canvas.
+    Go to the **Relationship Graph** tab. The interactive React Flow canvas displays the new entities and their connections.
   </Step>
 </Steps>

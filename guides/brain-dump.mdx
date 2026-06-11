@@ -3,28 +3,28 @@ title: "AI Brain Dump"
 description: "How to convert raw notes, session recaps, and ideas into structured lore."
 ---
 
-The **Brain Dump** is the central ingestion pipeline of AllCodex. Instead of manually creating database notes, linking templates, and writing attributes, you can dump raw, messy thoughts or TTRPG session recaps and let the AI build your wiki for you.
+The **Brain Dump** is the central ingestion pipeline of AllCodex. Dump raw thoughts or TTRPG session recaps, and the AI builds your wiki by creating notes, linking templates, and writing attributes.
 
 ---
 
 ## Processing modes
 
-When you submit a brain dump, you can choose from three processing modes depending on how much control you want over the output:
+Choose from three processing modes when submitting a brain dump:
 
 | Mode | Behavior | Best used for |
 | :--- | :--- | :--- |
-| **Auto** | The AI immediately processes the dump, extracts entities, resolves duplicates, and commits them straight to your database. | Quick updates, small notes, or when you trust the AI fully. |
+| **Auto** | The AI processes the dump, extracts entities, resolves duplicates, and commits them to your database. | Quick updates or small notes. |
 | **Review** | The AI extracts the entities and presents them as interactive draft cards in the Portal. You can rename them, edit their attributes, delete incorrect extras, and manually choose when to commit. | Dense session recaps, complex lore, or when importing many new entities at once. |
-| **Inbox** | The AI drops the entire dump as a single raw note into your AllCodex Core "Inbox" folder without running any LLM extraction. | Quick offline dumps when you don't want to use API tokens immediately. |
+| **Inbox** | The AI places the entire dump as a single raw note into your AllCodex Core "Inbox" folder without running LLM extraction. | Dumps that do not require immediate API token use. |
 
 ---
 
 ## The streaming pipeline (SSE)
 
 When processing in **Auto** or **Review** mode, AllKnower opens a Server-Sent Events (SSE) stream to the Portal:
-1. **Live stream**: You will see the AI's step-by-step reasoning and a stream of extracted entities (with titles and types) render progressively on your dashboard.
+1. **Live stream**: The dashboard renders the AI's step-by-step reasoning and a stream of extracted entities (with titles and types) in real time.
 2. **Observability**: The stream prints live token counts, processing latency, and estimated OpenRouter cost.
-3. **No timeout**: Large text dumps can take up to a minute to process. The SSE pipeline uses active `: keepalive` comments to prevent browser timeouts during long inference runs.
+3. **No timeout**: The SSE pipeline uses active `: keepalive` comments to prevent browser timeouts during long inference runs, which can take up to a minute.
 
 ---
 
@@ -32,15 +32,15 @@ When processing in **Auto** or **Review** mode, AllKnower opens a Server-Sent Ev
 
 If you have a backlog of text files (e.g. dozens of campaign session recaps or old worldbuilding docs), you can use the **Bulk Brain Dump** feature:
 
-1. **Queueing**: Submit multiple text documents simultaneously. The Portal sends them to AllKnower's background worker, which queues them in the `brain_dump_jobs` table.
-2. **Background execution**: Jobs are executed sequentially. You can monitor the progress, pause, or cancel queued dumps from the settings page.
-3. **Notifications**: Enable push notifications in the Portal to get alerted on your desktop/phone when a long-running batch job completes.
+1. **Queueing**: Submit multiple text documents at the same time. The Portal sends them to AllKnower's background worker, which queues them in the `brain_dump_jobs` table.
+2. **Background execution**: The system executes jobs sequentially. Monitor progress, pause, or cancel queued dumps from the settings page.
+3. **Notifications**: Enable push notifications in the Portal to receive alerts on your desktop or phone when a batch job completes.
 
 ---
 
 ## Best practices for writing dumps
 
-To get the most accurate extractions out of the AI:
+To improve extraction accuracy:
 
 * **Mention relations explicitly**: Write how things connect. 
   * *Good*: *"Sir Roderick is a member of the Silver Gauntlet. He reports directly to Commander Vane."*

@@ -13,7 +13,7 @@ Before deploying AllCodex, ensure your host environment meets the following spec
 
 | Requirement | Recommended | Minimum | Notes |
 | :--- | :--- | :--- | :--- |
-| **Operating System**| Linux (Ubuntu/Debian) | macOS / Windows | Docker runs most stably on native Linux. |
+| **Operating System**| Linux (Ubuntu/Debian) | macOS / Windows | Docker runs with optimal stability on native Linux. |
 | **CPU** | 2 Cores | 1 Core | Vector search and AI parsing require light compute. |
 | **RAM** | 4 GB | 2 GB | Headless Trilium (Core) caches notes in-memory. |
 | **Disk Space** | 10 GB | 2 GB | Dependent on map uploads and database size. |
@@ -47,5 +47,5 @@ AllCodex persists data in three locations. In our Docker Compose configuration, 
 ```
 
 <Warning>
-  Ensure you regularly back up `/srv/allcodex`. If this folder is deleted, you will lose your entire lore database, system templates, user profiles, and vector indexes.
+  Back up `/srv/allcodex` to prevent losing the lore database, templates, user profiles, and vector indexes if the folder is deleted.
 </Warning>

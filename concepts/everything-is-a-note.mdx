@@ -3,13 +3,13 @@ title: "Everything is a Note"
 description: "Understanding the flexible note, attribute, and branch structure of AllCodex Core."
 ---
 
-Unlike traditional wiki engines that use strict SQL tables for characters, locations, and events, AllCodex Core is built on a highly flexible, object-graph model. **Everything is a note.** 
+AllCodex Core uses a flexible object-graph model instead of traditional SQL tables. **Everything is a note.** 
 
 ---
 
 ## The anatomy of a note
 
-Every entity in your grimoire — whether it is a wizard, a sword, a city, a custom CSS stylesheet, or a system template — is represented by a record in the `notes` table.
+A record in the `notes` table represents every entity in your grimoire, including characters, locations, items, custom CSS stylesheets, and system templates.
 
 A note consists of three primary layers:
 1. **Metadata**: Fundamental properties stored in the database record (ID, title, type, dates).
@@ -39,16 +39,16 @@ A note consists of three primary layers:
 
 ## Branches and multi-parenting
 
-In a traditional folder structure, a file lives in exactly one folder. In AllCodex, notes are organized in a tree via **branches**, which represent parent-child relationships. 
+Traditional folders limit files to a single directory. In AllCodex, branches organize notes into a tree representing parent-child relationships. 
 
-Crucially, AllCodex supports **multi-parenting**: a single note can have multiple branches pointing to it.
+AllCodex supports **multi-parenting**, allowing multiple branches to point to a single note.
 
-For example, the NPC **"Michael Ashvane"** can simultaneously live under:
+For example, the NPC **"Michael Ashvane"** can live under multiple paths:
 - `Lore / Characters / Solara`
 - `Factions / Dawn Shield / Officers`
 - `Campaign / Sessions / Session 1 Recap / NPCs Met`
 
-If you edit the note in one location, it updates everywhere because there is only one underlying note record; only the organizational branches are duplicated.
+Editing the note in one path updates all paths because the system stores a single underlying note record; only the organizational branches point to it.
 
 ---
 
@@ -70,6 +70,6 @@ Relations are directed pointers from one note to another.
 
 ## Promoted attributes
 
-To make editing lore feel like using a database, AllCodex supports **Promoted Attributes**. 
+AllCodex supports **Promoted Attributes** to provide a structured database interface. 
 
-When a note is linked to a template note via a `~template` relation, any attributes defined in that template are "promoted" to the top of the note. Instead of writing raw markdown or editing free-form tags, you are presented with structured form fields (e.g. text inputs, dropdowns) representing attributes like `age`, `ruler`, `population`, or `challengeRating`.
+Linking a note to a template via the `~template` relation promotes the template's attributes to the top of the note. This displays structured fields (such as text inputs and dropdowns) for attributes like `age`, `ruler`, `population`, or `challengeRating` instead of raw markdown or free-form tags.

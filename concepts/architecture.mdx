@@ -3,7 +3,7 @@ title: "System Architecture"
 description: "A deep dive into the three-service system powering the AllCodex grimoire."
 ---
 
-AllCodex is designed from the ground up as a decoupled, multi-tier system. Instead of running a single monolithic application, AllCodex splits concerns into three dedicated services:
+AllCodex is a decoupled, multi-tier system. AllCodex splits concerns into three dedicated services:
 
 1. **AllCodex Portal** (Web Frontend)
 2. **AllKnower** (AI Orchestrator & RAG Engine)
@@ -23,7 +23,7 @@ AllCodex is designed from the ground up as a decoupled, multi-tier system. Inste
 
 ## Communication and data flow
 
-To ensure high security, the browser **never** communicates directly with the database (Core) or the AI brain (AllKnower). The Portal acts as a strict **BFF (Backend-for-Frontend) proxy**.
+To maintain security, the browser does not communicate directly with the database (Core) or the AI brain (AllKnower). The Portal acts as a BFF (Backend-for-Frontend) proxy.
 
 ```
   Browser (Client)
@@ -64,11 +64,11 @@ To ensure high security, the browser **never** communicates directly with the da
 
 ## Auth and bootstrap sequence (auto-provisioning)
 
-To make self-hosting painless, AllCodex includes a zero-login bootstrap chain:
+To simplify self-hosting, AllCodex includes a zero-login bootstrap chain:
 
 <Steps>
   <Step title="Core startup">
-    On startup, AllCodex Core reads the `ALLCODEX_PASSWORD` environment variable and auto-configures its administrator password.
+    On startup, AllCodex Core reads the `ALLCODEX_PASSWORD` environment variable and configures its administrator password.
   </Step>
   <Step title="AllKnower startup">
     AllKnower checks if a default administrator exists. If not, it creates a default account and runs a loopback authentication call to AllCodex Core using the startup password. It then generates an ETAPI token and stores it as an encrypted `UserIntegration` record in its Postgres database.

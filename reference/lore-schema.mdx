@@ -18,22 +18,22 @@ In AllCodex, lore attributes live in three states:
 
 ## The 21 lore entity types
 
-Below is the complete catalog of all 21 lore entity types supported by AllCodex, including template IDs, database promoted attributes, and AI pipeline fields.
+This section catalogs the 21 lore entity types supported by AllCodex, detailing template IDs, database promoted attributes, and AI pipeline fields.
 
 ### 1. Character
 NPCs, PCs, and historical figures.
 * **Template ID**: `_template_character`
 * **Database Promoted Attributes**:
-  * `fullName` (Text) — Full name of the character.
-  * `aliases` (Text) — Titles, monikers, or pseudonyms.
-  * `age` (Number) — Numerical age.
-  * `race` (Text) — Species or ethnic lineage.
-  * `gender` (Text) — Gender expression.
-  * `affiliation` (Text) — Factions, guilds, or groups.
-  * `role` (Text) — Class, profession, or social role.
-  * `status` (Text) — e.g. Alive, Dead, Missing.
-  * `secrets` (Text) — Hidden GM-only facts.
-  * `goals` (Text) — Motivations or immediate plans.
+  * `fullName` (Text): Full name of the character.
+  * `aliases` (Text): Titles, monikers, or pseudonyms.
+  * `age` (Number): Numerical age.
+  * `race` (Text): Species or ethnic lineage.
+  * `gender` (Text): Gender expression.
+  * `affiliation` (Text): Factions, guilds, or groups.
+  * `role` (Text): Class, profession, or social role.
+  * `status` (Text): e.g. Alive, Dead, Missing.
+  * `secrets` (Text): Hidden GM-only facts.
+  * `goals` (Text): Motivations or immediate plans.
 * **AI Pipeline Schema**:
   * Extracts all of the above plus `physicalDescription`, `personality`, and `backstory` (written directly into the note's HTML body instead of database labels).
 
@@ -41,12 +41,12 @@ NPCs, PCs, and historical figures.
 Cities, dungeons, regions, landmarks, or planes.
 * **Template ID**: `_template_location`
 * **Database Promoted Attributes**:
-  * `locationType` (Text) — e.g. City, Dungeon, Region, Landmark.
-  * `region` (Text) — The broader geographic area containing this location.
-  * `population` (Text) — Total inhabitants or size categorization.
-  * `ruler` (Text) — Factions or characters in control.
-  * `secrets` (Text) — Hidden GM-only facts.
-  * `geolocation` (Text) — Latitude/longitude coordinates for map pins.
+  * `locationType` (Text): e.g. City, Dungeon, Region, Landmark.
+  * `region` (Text): The broader geographic area containing this location.
+  * `population` (Text): Total inhabitants or size categorization.
+  * `ruler` (Text): Factions or characters in control.
+  * `secrets` (Text): Hidden GM-only facts.
+  * `geolocation` (Text): Latitude/longitude coordinates for map pins.
 * **AI Pipeline Schema**:
   * Extracts `locationType`, `region`, `population`, `ruler`, `secrets` plus `history`, `notableLandmarks`, and `connectedLocations` (stored as unpromoted labels).
 
@@ -54,12 +54,12 @@ Cities, dungeons, regions, landmarks, or planes.
 Organizations, guilds, or political powers with goals and leadership.
 * **Template ID**: `_template_faction`
 * **Database Promoted Attributes**:
-  * `factionType` (Text) — e.g. Guild, Empire, Secret Society.
-  * `foundingDate` (Text) — Calendar date or era of creation.
-  * `leader` (Text) — Chief NPC or council.
-  * `goals` (Text) — Major objectives.
-  * `secrets` (Text) — GM-only details.
-  * `status` (Text) — Active, Defunct, Disbanded.
+  * `factionType` (Text): e.g. Guild, Empire, Secret Society.
+  * `foundingDate` (Text): Calendar date or era of creation.
+  * `leader` (Text): Chief NPC or council.
+  * `goals` (Text): Major objectives.
+  * `secrets` (Text): GM-only details.
+  * `status` (Text): Active, Defunct, Disbanded.
 * **AI Pipeline Schema**:
   * Extracts `factionType`, `foundingDate`, `leader`, `goals`, `secrets` plus `members`, `allies`, `enemies`, and `hierarchy` (saved as unpromoted labels).
 
@@ -67,11 +67,11 @@ Organizations, guilds, or political powers with goals and leadership.
 Monsters, beasts, or distinct entities.
 * **Template ID**: `_template_creature`
 * **Database Promoted Attributes**:
-  * `creatureType` (Text) — e.g. Beast, Aberration, Undead.
-  * `habitat` (Text) — Natural terrain or plane.
-  * `diet` (Text) — Feeding habits.
-  * `dangerLevel` (Text) — Threat level or CR indicator.
-  * `abilities` (Text) — Notable traits.
+  * `creatureType` (Text): e.g. Beast, Aberration, Undead.
+  * `habitat` (Text): Natural terrain or plane.
+  * `diet` (Text): Feeding habits.
+  * `dangerLevel` (Text): Threat level or CR indicator.
+  * `abilities` (Text): Notable traits.
 * **AI Pipeline Schema**:
   * Extracts all of the above plus `lore` (written to HTML content) and D&D-style stats (`ac`, `hp`, `speed`, `str`, `dex`, `con`, `int`, `wis`, `cha`, `cr`).
 
@@ -79,11 +79,11 @@ Monsters, beasts, or distinct entities.
 Historical occurrences, campaign sessions, or planned encounters.
 * **Template ID**: `_template_event`
 * **Database Promoted Attributes**:
-  * `date` (Text) — Calendar timestamp.
-  * `location` (Text) — Geopolitical node where it occurred.
-  * `participants` (Text) — Active factions/NPCs.
-  * `outcome` (Text) — Historical result.
-  * `secrets` (Text) — GM-only details.
+  * `date` (Text): Calendar timestamp.
+  * `location` (Text): Geopolitical node where it occurred.
+  * `participants` (Text): Active factions/NPCs.
+  * `outcome` (Text): Historical result.
+  * `secrets` (Text): GM-only details.
 * **AI Pipeline Schema**:
   * Extracts all database promoted attributes.
 
@@ -91,9 +91,9 @@ Historical occurrences, campaign sessions, or planned encounters.
 Sequences of events.
 * **Template ID**: `_template_timeline`
 * **Database Promoted Attributes**:
-  * `calendarSystem` (Text) — e.g. Harptos, Gregorian.
-  * `sorted` (Text) — Sorting mechanism.
-  * `sortBy` (Text) — Key field to sort.
+  * `calendarSystem` (Text): e.g. Harptos, Gregorian.
+  * `sorted` (Text): Sorting mechanism.
+  * `sortBy` (Text): Key field to sort.
 * **AI Pipeline Schema**:
   * Extracts `startDate`, `endDate`, and `events` (stored as unpromoted labels).
 
@@ -101,9 +101,9 @@ Sequences of events.
 Books, ledgers, ancient scrolls, or in-world literature.
 * **Template ID**: `_template_manuscript`
 * **Database Promoted Attributes**:
-  * `genre` (Text) — e.g. Arcane Thesis, Diary.
-  * `manuscriptStatus` (Text) — e.g. Complete, Fragment, Lost.
-  * `wordCount` (Number) — Document length.
+  * `genre` (Text): e.g. Arcane Thesis, Diary.
+  * `manuscriptStatus` (Text): e.g. Complete, Fragment, Lost.
+  * `wordCount` (Number): Document length.
 * **AI Pipeline Schema**:
   * Extracts `wordCount` and `status` (mapped to `manuscriptStatus`).
 
@@ -123,11 +123,11 @@ TTRPG stats (e.g., D&D 5e monster templates).
 Equipment, artifacts, weapons, or key campaign items.
 * **Template ID**: `_template_item`
 * **Database Promoted Attributes**:
-  * `itemType` (Text) — e.g. Weapon, Wondrous Item, Potion.
-  * `rarity` (Text) — e.g. Common, Rare, Legendary.
-  * `creator` (Text) — Historical figure or faction.
-  * `magicProperties` (Text) — Enchantments.
-  * `history` (Text) — Origins.
+  * `itemType` (Text): e.g. Weapon, Wondrous Item, Potion.
+  * `rarity` (Text): e.g. Common, Rare, Legendary.
+  * `creator` (Text): Historical figure or faction.
+  * `magicProperties` (Text): Enchantments.
+  * `history` (Text): Origins.
 * **AI Pipeline Schema**:
   * Extracts all of the above plus `currentOwner` and `secrets` (unpromoted).
 
@@ -135,12 +135,12 @@ Equipment, artifacts, weapons, or key campaign items.
 Magical incantations or abilities.
 * **Template ID**: `_template_spell`
 * **Database Promoted Attributes**:
-  * `school` (Text) — e.g. Evocation, Necromancy.
-  * `level` (Number) — Spell level (0 for cantrips).
-  * `castingTime` (Text) — Action, Bonus Action, Hours.
-  * `range` (Text) — Distance.
-  * `components` (Text) — V, S, M (and materials).
-  * `duration` (Text) — Concentration, Instantaneous.
+  * `school` (Text): e.g. Evocation, Necromancy.
+  * `level` (Number): Spell level (0 for cantrips).
+  * `castingTime` (Text): Action, Bonus Action, Hours.
+  * `range` (Text): Distance.
+  * `components` (Text): V, S, M (and materials).
+  * `duration` (Text): Concentration, Instantaneous.
 * **AI Pipeline Schema**:
   * Extracts all of the above plus `origin` and `secrets` (unpromoted).
 
@@ -148,11 +148,11 @@ Magical incantations or abilities.
 Specific structural objects like taverns, keeps, or shrines.
 * **Template ID**: `_template_building`
 * **Database Promoted Attributes**:
-  * `buildingType` (Text) — Tavern, Castle, Temple.
-  * `owner` (Text) — Proprietor or faction.
-  * `purpose` (Text) — Role in town.
-  * `condition` (Text) — Ruined, Pristine, Under Construction.
-  * `secrets` (Text) — GM-only details.
+  * `buildingType` (Text): Tavern, Castle, Temple.
+  * `owner` (Text): Proprietor or faction.
+  * `purpose` (Text): Role in town.
+  * `condition` (Text): Ruined, Pristine, Under Construction.
+  * `secrets` (Text): GM-only details.
 * **AI Pipeline Schema**:
   * Extracts all of the above plus `location` (unpromoted).
 
@@ -216,12 +216,12 @@ Organized faiths and belief networks.
 TTRPG campaign recap entries.
 * **Template ID**: `_template_session`
 * **Database Promoted Attributes**:
-  * `sessionDate` (Text) — Real-world game date.
-  * `players` (Text) — List of active players.
-  * `sessionStatus` (Text) — e.g. Played, Cancelled, Scheduled.
-  * `recap` (Text) — Campaign events.
-  * `hooks` (Text) — Unresolved clues or tasks.
-  * `gmNotes` (Text) — Secret GM ledger.
+  * `sessionDate` (Text): Real-world game date.
+  * `players` (Text): List of active players.
+  * `sessionStatus` (Text): e.g. Played, Cancelled, Scheduled.
+  * `recap` (Text): Campaign events.
+  * `hooks` (Text): Unresolved clues or tasks.
+  * `gmNotes` (Text): Secret GM ledger.
 * **AI Pipeline Schema**:
   * Extracts `sessionDate`, `players`, `sessionStatus`, `recap`, `hooks`.
 
@@ -229,12 +229,12 @@ TTRPG campaign recap entries.
 Campaign objectives or milestones.
 * **Template ID**: `_template_quest`
 * **Database Promoted Attributes**:
-  * `questStatus` (Text) — Must be `active`, `completed`, `failed`, or `deferred`.
-  * `questGiver` (Text) — Entity initiating the quest.
-  * `reward` (Text) — EXP, gold, or items.
-  * `location` (Text) — Destination node.
-  * `hooks` (Text) — Plot hooks.
-  * `consequences` (Text) — Results of completion or failure.
+  * `questStatus` (Text): Must be `active`, `completed`, `failed`, or `deferred`.
+  * `questGiver` (Text): Entity initiating the quest.
+  * `reward` (Text): EXP, gold, or items.
+  * `location` (Text): Destination node.
+  * `hooks` (Text): Plot hooks.
+  * `consequences` (Text): Results of completion or failure.
 * **AI Pipeline Schema**:
   * Extracts all of the above (allowing `"unknown"` status as a fallback).
 
@@ -242,10 +242,10 @@ Campaign objectives or milestones.
 Encounters, locations, or isolated narrative units.
 * **Template ID**: `_template_scene`
 * **Database Promoted Attributes**:
-  * `location` (Text) — Context location node.
-  * `participants` (Text) — Involved NPCs/monsters.
-  * `outcome` (Text) — Resolving event.
-  * `gmNotes` (Text) — Secret notes.
+  * `location` (Text): Context location node.
+  * `participants` (Text): Involved NPCs/monsters.
+  * `outcome` (Text): Resolving event.
+  * `gmNotes` (Text): Secret notes.
 * **AI Pipeline Schema**:
   * Extracts all of the above.
 
