@@ -7,25 +7,25 @@ AllCodex releases regular updates containing bug fixes, new features, and optimi
 
 ---
 
-## Standard Docker Upgrade
+## Standard Docker upgrade
 
 Since all of your campaign lore, SQLite files, and vector indices are persisted in `/srv/allcodex` on your host machine, you can update your Docker containers without losing any data.
 
-### 1. Pull the Latest Images
+### 1. Pull the latest images
 Pull the updated tags from GitHub Packages:
 
 ```bash
 docker compose pull
 ```
 
-### 2. Recreate the Containers
+### 2. Recreate the containers
 Recreate and start the services. Docker will only replace the containers that have new images:
 
 ```bash
 docker compose up -d
 ```
 
-### 3. Clean Up Old Images
+### 3. Clean up old images
 Remove old, dangling Docker images to free up disk space:
 
 ```bash
@@ -34,7 +34,7 @@ docker image prune -f
 
 ---
 
-## Upgrading Database Schema & Migrations
+## Upgrading database schema and migrations
 
 ### AllCodex Core (SQLite)
 Core applies schema migrations automatically on startup. The Express server checks the SQLite schema, runs any pending sql scripts, and updates the database without manual commands.
@@ -51,7 +51,7 @@ bun db:migrate
 
 ---
 
-## Re-indexing Vector Embeddings (RAG)
+## Re-indexing vector embeddings (RAG)
 
 If a new AllCodex release changes the embedding models or the RAG schema (e.g. updating Qwen embeddings), your LanceDB vector database may need to be re-indexed:
 

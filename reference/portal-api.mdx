@@ -7,7 +7,7 @@ The Portal acts as a secure Backend for Frontend (BFF) proxy. The browser never 
 
 ---
 
-## Credential Flow
+## Credential flow
 
 All backend calls resolve credentials from HTTP-only cookies via `getEtapiCreds()` and `getAkCreds()` (defined in `lib/get-creds.ts`). If cookies are not set, the route falls back to environment variables in `.env.local`. The browser never sees tokens.
 
@@ -38,7 +38,7 @@ These routes proxy requests directly to the AllCodex Core ETAPI.
 | `PATCH` | `/api/lore/[id]` | Update note properties (title, type, mime). | AllCodex ETAPI |
 | `DELETE` | `/api/lore/[id]` | Delete a note. Returns 204. | AllCodex ETAPI |
 
-### POST `/api/lore` — Create Note Example
+### POST `/api/lore` — create note example
 
 ```json
 {
@@ -54,7 +54,7 @@ These routes proxy requests directly to the AllCodex Core ETAPI.
 
 ---
 
-## Note Attributes & Relationships
+## Note attributes and relationships
 
 | Method | Path | Description | Backend |
 | :--- | :--- | :--- | :--- |
@@ -62,13 +62,13 @@ These routes proxy requests directly to the AllCodex Core ETAPI.
 | `DELETE` | `/api/lore/[id]/attributes?attrId=<ID>` | Delete an attribute by ID. Returns 204. | AllCodex ETAPI |
 | `POST` | `/api/lore/[id]/relationships` | Get existing relations + AI-suggested connections for a note. | AllKnower + AllCodex ETAPI |
 
-### POST `/api/lore/[id]/attributes` — Create Label
+### POST `/api/lore/[id]/attributes` — create label
 
 ```json
 { "type": "label", "name": "fullName", "value": "Lord Ashvane" }
 ```
 
-### POST `/api/lore/[id]/attributes` — Create Relation
+### POST `/api/lore/[id]/attributes` — create relation
 
 ```json
 { "type": "relation", "name": "~belongsTo", "value": "<targetNoteId>" }
@@ -76,7 +76,7 @@ These routes proxy requests directly to the AllCodex Core ETAPI.
 
 ---
 
-## Note Content, Revisions & Media
+## Note content, revisions, and media
 
 | Method | Path | Description | Backend |
 | :--- | :--- | :--- | :--- |
@@ -96,7 +96,7 @@ These routes proxy requests directly to the AllCodex Core ETAPI.
 
 ---
 
-## Lore Tree Operations
+## Lore tree operations
 
 | Method | Path | Description | Backend |
 | :--- | :--- | :--- | :--- |
@@ -115,7 +115,7 @@ Send binary image body. Set `x-vercel-filename` header for the file name.
 
 ---
 
-## Search & Discovery
+## Search and discovery
 
 | Method | Path | Description | Backend |
 | :--- | :--- | :--- | :--- |
@@ -140,7 +140,7 @@ Returns:
 
 ---
 
-## Brain Dump
+## Brain dump
 
 | Method | Path | Description | Backend |
 | :--- | :--- | :--- | :--- |
@@ -181,7 +181,7 @@ Returns:
 
 ---
 
-## AI Tools & Copilot
+## AI tools and Copilot
 
 | Method | Path | Description | Backend |
 | :--- | :--- | :--- | :--- |
@@ -199,7 +199,7 @@ Returns:
 { "noteIds": ["abc123", "def456"] }
 ```
 
-### PUT `/api/ai/relationships` — Apply
+### PUT `/api/ai/relationships` — apply
 
 ```json
 {
@@ -222,7 +222,7 @@ Returns:
 
 ---
 
-## Content Collections
+## Content collections
 
 These routes query AllCodex ETAPI for notes with specific labels.
 
@@ -234,7 +234,7 @@ These routes query AllCodex ETAPI for notes with specific labels.
 
 ---
 
-## Share Settings
+## Share settings
 
 | Method | Path | Description | Backend |
 | :--- | :--- | :--- | :--- |
@@ -242,13 +242,13 @@ These routes query AllCodex ETAPI for notes with specific labels.
 | `PUT` | `/api/share` | Set a note as the share root (public entry point). | AllCodex ETAPI |
 | `GET` | `/api/share/tree` | List all lore notes with share visibility flags. | AllCodex ETAPI |
 
-### GET `/api/share/tree` — Response Fields
+### GET `/api/share/tree` — response fields
 
 Each note includes: `noteId`, `title`, `isDraft`, `isGmOnly`, `shareAlias`, `isProtected`, `isShared`.
 
 ---
 
-## Configuration & Auth
+## Configuration and auth
 
 | Method | Path | Description | Backend |
 | :--- | :--- | :--- | :--- |
@@ -291,7 +291,7 @@ Web-push notifications (e.g. brain dump completion status).
 
 ---
 
-## Usage & Budgets
+## Usage and budgets
 
 | Method | Path | Description | Backend |
 | :--- | :--- | :--- | :--- |
@@ -302,7 +302,7 @@ Web-push notifications (e.g. brain dump completion status).
 
 ---
 
-## Key Developer Patterns
+## Key developer patterns
 
 1. **Proxy Architecture**: Every `/api/*` route is a thin proxy. No domain logic lives in the Portal.
 2. **Error Handling**: Routes call `notConfigured()` when credentials are missing and `handleRouteError()` for exceptions.

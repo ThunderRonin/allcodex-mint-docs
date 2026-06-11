@@ -11,7 +11,7 @@ AllCodex is designed from the ground up as a decoupled, multi-tier system. Inste
 
 ---
 
-## Service Inventory
+## Service inventory
 
 | Service | Stack | Port | Primary Responsibility |
 | :--- | :--- | :--- | :--- |
@@ -21,7 +21,7 @@ AllCodex is designed from the ground up as a decoupled, multi-tier system. Inste
 
 ---
 
-## Communication & Data Flow
+## Communication and data flow
 
 To ensure high security, the browser **never** communicates directly with the database (Core) or the AI brain (AllKnower). The Portal acts as a strict **BFF (Backend-for-Frontend) proxy**.
 
@@ -51,7 +51,7 @@ To ensure high security, the browser **never** communicates directly with the da
                              AllCodex Core (:8080)
 ```
 
-### Security Boundary
+### Security boundary
 
 1. **No Client Tokens**: AllCodex Core external API (ETAPI) tokens and AllKnower authorization Bearer tokens are kept strictly server-side.
 2. **HTTP-only Cookies**: The Portal resolves user sessions from HTTP-only cookies (`allknower_token` and `allknower_url`). Browser-based JavaScript cannot read these cookies, eliminating token theft vectors.
@@ -62,7 +62,7 @@ To ensure high security, the browser **never** communicates directly with the da
 
 ---
 
-## Auth & Bootstrap Sequence (Auto-Provisioning)
+## Auth and bootstrap sequence (auto-provisioning)
 
 To make self-hosting painless, AllCodex includes a zero-login bootstrap chain:
 

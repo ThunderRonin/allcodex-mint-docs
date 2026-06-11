@@ -7,7 +7,7 @@ AllCodex uses a state-of-the-art **hybrid search engine** to query your lore. Ra
 
 ---
 
-## The Search Pipeline
+## The search pipeline
 
 When you search for something in the Portal or when the AI retrieves lore context, AllKnower executes a four-stage search pipeline:
 
@@ -34,19 +34,19 @@ When you search for something in the Portal or when the AI retrieves lore contex
 
 ---
 
-## 1. Vector Search (LanceDB)
+## 1. Vector search (LanceDB)
 AllKnower maintains an embedded, in-process **LanceDB** database.
 * **Embeddings**: When you create or update a note, AllKnower chunkifies the note content and generates 4096-dimensional vectors using `qwen/qwen3-embedding-8b` via OpenRouter.
 * **Semantic Retrieval**: LanceDB performs vector similarity searches, letting you find relevant notes even if they use completely different words. For example, searching for *"rulers of the elven wood"* will retrieve notes mentioning *"leaders of the sylvan canopy"* without needing exact keyword matches.
 
 ---
 
-## 2. Full-Text Keyword Search (SQLite BM25)
+## 2. Full-text keyword search (SQLite BM25)
 To ensure proper nouns (like character names, unique spells, or specific item titles) are never lost due to vector approximations, AllKnower queries AllCodex Core's SQLite Full-Text Search (FTS5) engine. This uses the **BM25 algorithm** to score notes based on literal term frequency and inverse document frequency.
 
 ---
 
-## 3. Reciprocal Rank Fusion (RRF)
+## 3. Reciprocal rank fusion (RRF)
 The candidate sets from both LanceDB and SQLite are merged using Reciprocal Rank Fusion (RRF). RRF scores candidates based on their rank in each separate search list rather than their raw scores:
 
 $$RRF\_Score(d) = \sum_{m \in M} \frac{1}{k + r_m(d)}$$
@@ -55,7 +55,7 @@ Where $r_m(d)$ is the rank of document $d$ in system $m$, and $k$ is a constant 
 
 ---
 
-## 4. LLM Reranking (Optional)
+## 4. LLM reranking (optional)
 For RAG context generation (feeding the AI grimoire history during Consistency scans), the fused RRF candidate list is sent to OpenRouter's native `/rerank` endpoint using `cohere/rerank-4-pro`. 
 
 The reranker scores how closely the contents of the top 20 notes answer the specific AI prompt, returning the top 5 most relevant documents to be injected into the LLM context window. This saves token costs and prevents LLM "lost in the middle" retrieval failures.
