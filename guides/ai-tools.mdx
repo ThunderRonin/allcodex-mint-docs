@@ -7,37 +7,37 @@ AllCodex includes three powerful analytical tools to help you maintain consisten
 
 ---
 
-## 1. Consistency Checker
+## 1. Consistency checker
 
 As a campaign grows, it is easy to forget details you wrote months ago, leading to contradictions during play. The Consistency Checker scans your lore tree to ensure everything makes logical sense.
 
-### How It Works
-1. **RAG Context Retrieval**: The checker uses your selected note as a starting point, retrieves conceptually related chunks from your database using vector search (RAG), and feeds them into the consistency analysis model.
+### How it works
+1. **RAG context retrieval**: The checker uses your selected note as a starting point, retrieves conceptually related chunks from your database using vector search (RAG), and feeds them into the consistency analysis model.
 2. **Scan**: It looks for direct contradictions (e.g. NPC age discrepancies, dead characters suddenly appearing in recent session notes, or conflicting faction leaders).
-3. **Contradiction Reports**: It returns structured alerts detailing the exact notes involved and the logical contradiction detected, allowing you to resolve them immediately.
+3. **Contradiction reports**: It returns structured alerts detailing the exact notes involved and the logical contradiction detected, allowing you to resolve them immediately.
 
 ---
 
-## 2. Relationship Suggester
+## 2. Relationship suggester
 
 The Relationship Suggester helps you interconnect your world by finding hidden narrative lines and suggesting canonical relationships between notes.
 
 ### Features
-* **Automatic Suggestion**: When you view a note's relationship panel, the suggester automatically scans the note text and recommends connections to other entities (e.g. *ally*, *serves*, *located_in*, *member_of*).
-* **Caching & Deduplication**: To keep token usage low and performance high, suggestions are cached by content hash. Repeating a suggestion on an unmodified note is instant and costs zero tokens. In-flight suggestions are also deduplicated to prevent parallel LLM calls.
-* **Canonical Mapping**: Suggested relations strictly map to AllCodex's 17 canonical relationship types (e.g. `~relMemberOf`, `~relLocatedIn`). 
-* **Easy Application**: Review suggested relations and click **Apply** to write them directly to your database as bidirectional Core attributes.
+* **Automatic suggestion**: When you view a note's relationship panel, the suggester automatically scans the note text and recommends connections to other entities (e.g. *ally*, *serves*, *located_in*, *member_of*).
+* **Caching and deduplication**: To keep token usage low and performance high, suggestions are cached by content hash. Repeating a suggestion on an unmodified note is instant and costs zero tokens. In-flight suggestions are also deduplicated to prevent parallel LLM calls.
+* **Canonical mapping**: Suggested relations strictly map to AllCodex's 17 canonical relationship types (e.g. `~relMemberOf`, `~relLocatedIn`). 
+* **Easy application**: Review suggested relations and click **Apply** to write them directly to your database as bidirectional Core attributes.
 
 ---
 
-## 3. Gap Detector
+## 3. Gap detector
 
 The Gap Detector acts as your worldbuilding advisor, telling you which parts of your campaign prep need more development.
 
-### How to Use It
-1. **Select Scope**: Choose a note subtree (e.g. a continent location, a dungeon, or a list of quests).
+### How to use it
+1. **Select scope**: Choose a note subtree (e.g. a continent location, a dungeon, or a list of quests).
 2. **Analysis**: The AI scans the description text and attribute density of the selected notes.
-3. **Actionable Suggestions**: It returns a list of areas that lack detail. For example:
+3. **Actionable suggestions**: It returns a list of areas that lack detail. For example:
    * *"The faction 'Dawn Shield' has no leader defined."*
    * *"Blackstone Keep has a high population but no buildings or taverns are documented under it."*
    * *"Session 3 mentions a magic artifact 'Eye of the Storm' but no corresponding item note has been created."*

@@ -7,28 +7,28 @@ Worldbuilding with AI involves calling external LLM APIs, which can incur costs.
 
 ---
 
-## The Observability Dashboard
+## The observability dashboard
 
 You can access usage analytics by navigating to the **Observability** or **Settings** page in the Portal. The dashboard displays:
 
-* **Daily Burn Rate**: A chart showing your API cost over the last 30 days.
-* **Task Breakdown**: The cost split by operation type (e.g. how much did you spend on Brain Dumps vs Consistency Checks vs Relationship Suggestions).
-* **Model Breakdown**: The cost split by model (e.g. Grok-4 vs Kimi-k2.5).
-* **Token Counts**: Split by prompt (input) and completion (output) tokens.
+* **Daily burn rate**: A chart showing your API cost over the last 30 days.
+* **Task breakdown**: The cost split by operation type (e.g. how much did you spend on Brain Dumps vs Consistency Checks vs Relationship Suggestions).
+* **Model breakdown**: The cost split by model (e.g. Grok-4 vs Kimi-k2.5).
+* **Token counts**: Split by prompt (input) and completion (output) tokens.
 
 ---
 
-## Budgets and Hard Limits
+## Budgets and hard limits
 
 To protect self-hosters from runaway loops or excessive usage, AllCodex supports user-scoped budgets:
 
-1. **Daily Warning Alert**: Set a soft warning threshold (e.g. $1.00/day). The Portal navigation bar will display a warning badge when your daily spending crosses this threshold.
-2. **Hard Spending Limit**: Set a hard daily budget (e.g. $2.00/day). Once this limit is reached, AllKnower will block all subsequent AI calls for the remainder of the day, returning a `403 Forbidden` error with a budget exceeded message.
-3. **Worry-Free Defaults**: The default budget is set to a conservative $0.50/day.
+1. **Daily warning alert**: Set a soft warning threshold (e.g. $1.00/day). The Portal navigation bar will display a warning badge when your daily spending crosses this threshold.
+2. **Hard spending limit**: Set a hard daily budget (e.g. $2.00/day). Once this limit is reached, AllKnower will block all subsequent AI calls for the remainder of the day, returning a `403 Forbidden` error with a budget exceeded message.
+3. **Worry-free defaults**: The default budget is set to a conservative $0.50/day.
 
 ---
 
-## Database Tracking Schema
+## Database tracking schema
 
 Observability metrics are tracked in AllKnower's PostgreSQL database using three primary tables:
 
