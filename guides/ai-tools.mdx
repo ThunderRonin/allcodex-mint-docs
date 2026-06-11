@@ -12,7 +12,7 @@ AllCodex includes three analytical tools to maintain consistency, discover conne
 The Consistency Checker scans your lore tree for contradictions. It helps prevent discrepancies as your campaign details expand.
 
 ### How it works
-1. **RAG context retrieval**: The checker uses your selected note as a starting point, retrieves conceptually related chunks from your database using vector search (RAG), and feeds them into the consistency analysis model.
+1. **RAG context retrieval**: The checker uses your selected note as a starting point. It retrieves conceptually related chunks from your database using vector search (RAG), then feeds them into the consistency analysis model.
 2. **Scan**: It looks for direct contradictions (e.g. NPC age discrepancies, dead characters suddenly appearing in recent session notes, or conflicting faction leaders).
 3. **Contradiction reports**: It returns structured alerts detailing the exact notes and the contradiction detected.
 
@@ -35,7 +35,7 @@ The Relationship Suggester connects entities by identifying narrative links and 
 The Gap Detector identifies parts of your campaign preparation that need more development.
 
 ### How to use it
-1. **Select scope**: Choose a note subtree (e.g. a continent location, a dungeon, or a list of quests).
+1. **Select scope**: Select a note subtree (e.g. a continent location, a dungeon, or a list of quests).
 2. **Analysis**: The AI scans the description text and attribute density of the selected notes.
 3. **Actionable suggestions**: It returns a list of areas that lack detail. For example:
    * *"The faction 'Dawn Shield' has no leader defined."*

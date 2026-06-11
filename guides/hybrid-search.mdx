@@ -47,7 +47,7 @@ To retain proper nouns (such as character names, unique spells, or specific item
 ---
 
 ## 3. Reciprocal rank fusion (RRF)
-The candidate sets from both LanceDB and SQLite are merged using Reciprocal Rank Fusion (RRF). RRF scores candidates by their rank in each search list instead of raw scores:
+AllKnower merges the candidate sets from both LanceDB and SQLite using Reciprocal Rank Fusion (RRF). RRF scores candidates by their rank in each search list instead of raw scores:
 
 $$RRF\_Score(d) = \sum_{m \in M} \frac{1}{k + r_m(d)}$$
 
@@ -56,6 +56,6 @@ Where $r_m(d)$ is the rank of document $d$ in system $m$, and $k$ is a constant 
 ---
 
 ## 4. LLM reranking (optional)
-For RAG context generation (feeding the AI grimoire history during Consistency scans), the fused RRF candidate list is sent to OpenRouter's native `/rerank` endpoint using `cohere/rerank-4-pro`. 
+For RAG context generation (feeding the AI grimoire history during Consistency scans), AllKnower sends the fused RRF candidate list to OpenRouter's native `/rerank` endpoint using `cohere/rerank-4-pro`. 
 
-The reranker scores how closely the contents of the top 20 notes answer the specific AI prompt, returning the top 5 most relevant documents to be injected into the LLM context window. This saves token costs and prevents LLM "lost in the middle" retrieval failures.
+The reranker scores how closely the contents of the top 20 notes answer the specific AI prompt. It returns the top 5 most relevant documents, which AllKnower injects into the LLM context window. This saves token costs and prevents LLM "lost in the middle" retrieval failures.
