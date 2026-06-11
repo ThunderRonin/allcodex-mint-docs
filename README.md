@@ -1,16 +1,11 @@
-# Mintlify Starter Kit
+# <img src="logo/grimoire.svg" width="32" height="32" align="center" style="margin-right: 8px;" /> AllCodex Documentation
 
-Use the starter kit to get your docs deployed and ready to customize.
+Welcome to the official documentation source repository for the AllCodex worldbuilding platform. The live documentation site is published at [docs.allcodex.allmaker.dev](https://docs.allcodex.allmaker.dev).
 
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
+This site contains guides, concepts, API specifications, and configuration parameters for all three services in the AllCodex ecosystem.
 
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
+**[Visit the Live Documentation](https://docs.allcodex.allmaker.dev)**
 
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
 
 ## AI-assisted writing
 
