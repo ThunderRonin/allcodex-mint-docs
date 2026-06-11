@@ -3,9 +3,15 @@
   "theme": "mint",
   "name": "AllCodex",
   "colors": {
-    "primary": "#ffa600",
-    "light": "#00c8cb",
-    "dark": "#914700"
+    "primary": "#ffaa00",
+    "light": "#b17200",
+    "dark": "#ffaa00"
+  },
+  "background": {
+    "color": {
+      "light": "#f5f2eb",
+      "dark": "#0e0d12"
+    }
   },
   "favicon": "/favicon.svg",
   "fonts": {
