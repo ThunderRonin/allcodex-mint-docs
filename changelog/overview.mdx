@@ -3,6 +3,53 @@ title: "Changelog"
 description: "Product updates and improvements"
 ---
 
+<Update label="June 11, 2026">
+
+## New features
+
+**Public chronicle landing page**
+
+The public-facing portal now opens onto a redesigned landing page with a hero section, debounced live search, and a Chronicle Index grid of published lore. Visitors can browse and discover shared lore without signing in.
+
+**Public search**
+
+A new public search endpoint powers the landing page and returns matches across published lore only. Drafts and GM-only entries are excluded.
+
+**Public images**
+
+Images attached to shared lore are now served through a dedicated public image route with caching, so portraits and inline images render correctly on public pages without exposing private uploads.
+
+**Redesigned public lore pages**
+
+Public lore detail pages now use a two-column layout with a hero header, content card, infobox (portrait, theme song, tags, attributes), and grouped relation cards — matching the depth of the GM detail view while staying read-only.
+
+## Updates
+
+**Single-owner gate in AllKnower**
+
+AllKnower now enforces the same single-owner model as the Portal. Email sign-up is gated behind a bootstrap secret, the first bootstrapped user is persisted as the owner, and owner-only middleware protects internal credential routes. See [Configuration](/self-hosting/configuration) for the relevant environment variables.
+
+**Tags on public lore**
+
+Public lore pages now show user tags while filtering out system and template attributes, so shared entries surface the labels readers care about without leaking internal metadata.
+
+**Configurable portal URL for share links**
+
+Share links are now derived from `NEXT_PUBLIC_PORTAL_URL` on the client, making it straightforward to point the Portal at a custom public domain. See [Sharing lore](/guides/sharing-lore).
+
+**Grimoire branding**
+
+The Portal, public pages, and AllKnower README now use the new grimoire logo and favicon in place of the generic scroll icon.
+
+## Fixes
+
+- Public share visibility now resolves correctly so published lore is reliably reachable from public URLs.
+- Share Settings shows a clear warning when a note isn't in the share tree, preventing confusion about why a "published" note isn't visible.
+- Hardened owner auth failure paths: lookup failures return a controlled `503` and bootstrap sign-up now fails cleanly if owner promotion can't resolve the created user.
+- Anonymous owner lookups short-circuit instead of doing unnecessary work, improving response times for unauthenticated requests.
+
+</Update>
+
 <Update label="June 6, 2026">
 
 ## New features
