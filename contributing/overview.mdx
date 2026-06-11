@@ -47,7 +47,7 @@ The repository contains a parent repository and three Git submodules:
 - **Framework**: Next.js 16 (App Router) + React 19 with React Compiler enabled.
 - **State Management**: Zustand for dedicated global client stores (`useBrainDumpStore`), TanStack Query for server state.
 - **Styling**: Tailwind CSS 4 with shadcn/ui.
-- **HTML Sanitization**: Sanitize all note body HTML using DOMPurify (`lib/sanitize.ts`) via `sanitizeLoreHtml()` for GM details or `sanitizePlayerView()` for player-safe outputs before rendering it to the browser.
+- **HTML Sanitization**: Sanitize all note body HTML using DOMPurify (`lib/sanitize.ts`) before rendering it to the browser. Use `sanitizeLoreHtml()` for GM details or `sanitizePlayerView()` for player-safe outputs.
 - **Testing**:
   - Vitest for unit testing.
   - Playwright for integration testing.

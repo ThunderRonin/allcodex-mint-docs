@@ -27,7 +27,7 @@ The Portal's shared content view now has clearer **Published**, **Draft**, and *
 
 **Share settings panel**
 
-The per-entry share panel now surfaces the computed share URL, a custom alias slug, and optional password protection in a single card, so configuring how a lore entry is published is a one-stop action.
+The per-entry share panel now surfaces the computed share URL, a custom alias slug, and optional password protection in a single card. Configuring how a lore entry is published is now a one-stop action.
 
 **Refreshed branding**
 
@@ -45,7 +45,7 @@ Published lore now has its own public, read-only pages and endpoints that anyone
 
 **Owner login**
 
-The Portal now has a dedicated owner login page that gates access to private dashboards, settings, and shared views. Unauthenticated visitors are redirected to login for private surfaces and see published lore and the login page only.
+The Portal now has a dedicated owner login page that gates access to private dashboards, settings, and shared views. The Portal redirects unauthenticated visitors to login for private surfaces and shows them only published lore and the login page.
 
 **Publication status in the share tree**
 
@@ -55,7 +55,7 @@ The share tree now shows explicit **Published** and **Not Shared** indicators, m
 
 **Single-owner Portal**
 
-We removed self-service sign-up and registration from the Portal and Settings pages. Login requires an existing AllKnower owner session before authentication cookies are issued. Private APIs return `401` for requests without owner credentials.
+We removed self-service sign-up and registration from the Portal and Settings pages. Login requires an existing AllKnower owner session before the Portal issues authentication cookies. Private APIs return `401` for requests without owner credentials.
 
 **AllKnower owner gate**
 
@@ -90,7 +90,7 @@ AI responses stream token-by-token in brain dump and entity views, displaying re
 
 **Auto-relate on brain dump**
 
-When you save a brain dump, the system proposes relationships to existing entities. Suggestions are cached by content hash and deduplicated in flight, making repeat queries faster.
+When you save a brain dump, the system proposes relationships to existing entities. AllKnower caches suggestions by content hash and deduplicates them in flight, making repeat queries faster.
 
 ## Updates
 
