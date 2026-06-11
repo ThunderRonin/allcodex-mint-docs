@@ -7,7 +7,7 @@ AllCodex services are configured using environment variables. Below is the compl
 
 ---
 
-## AllCodex Core (Database)
+## AllCodex Core (database)
 
 Core configurations govern the database paths, ports, and default startup credentials.
 
@@ -21,11 +21,11 @@ Core configurations govern the database paths, ports, and default startup creden
 
 ---
 
-## AllKnower (AI Brain)
+## AllKnower (AI brain)
 
 AllKnower handles database models, connections to PostgreSQL/LanceDB, OpenRouter keys, and model selections.
 
-### System Settings
+### System settings
 
 | Variable | Default | Description |
 | :--- | :--- | :--- |
@@ -39,7 +39,7 @@ AllKnower handles database models, connections to PostgreSQL/LanceDB, OpenRouter
 | `BETTER_AUTH_URL` | `http://localhost:3001` | The canonical URL of the AllKnower auth server. |
 | `INTEGRATION_CREDENTIALS_KEY`| (none) | **Critical in production.** A 32-byte key (represented as a 64-character hex string) used to encrypt database credentials at rest. |
 
-### Web Push & Email Notifications
+### Web push and email notifications
 
 | Variable | Default | Description |
 | :--- | :--- | :--- |
@@ -49,7 +49,7 @@ AllKnower handles database models, connections to PostgreSQL/LanceDB, OpenRouter
 | `RESEND_API_KEY` | (none) | Resend email delivery API key. |
 | `RESEND_FROM_EMAIL`| `noreply@allcodex.local` | The email address from which budget alerts are sent. |
 
-### Model Customizations
+### Model customizations
 
 You can override the models used by the AI engine for specific tasks. For each task, you can configure a primary model plus up to three fallback models.
 
@@ -63,12 +63,12 @@ You can override the models used by the AI engine for specific tasks. For each t
 | **Embeddings** | `EMBEDDING_CLOUD` | `qwen/qwen3-embedding-8b` |
 | **Rerank** | `RERANK_MODEL` | `cohere/rerank-4-pro` |
 
-* **Fallback Syntax**: Append `_FALLBACK_1`, `_FALLBACK_2`, or `_FALLBACK_3` to any model key (e.g. `BRAIN_DUMP_MODEL_FALLBACK_1=google/gemini-2.5-pro`).
-* **Auto Route**: Set `USE_OPENROUTER_AUTO=true` to let OpenRouter automatically select the best model for all tasks.
+* **Fallback syntax**: Append `_FALLBACK_1`, `_FALLBACK_2`, or `_FALLBACK_3` to any model key (e.g. `BRAIN_DUMP_MODEL_FALLBACK_1=google/gemini-2.5-pro`).
+* **Auto route**: Set `USE_OPENROUTER_AUTO=true` to let OpenRouter automatically select the best model for all tasks.
 
 ---
 
-## AllCodex Portal (Frontend)
+## AllCodex Portal (frontend)
 
 Portal variables configure connections to the backends and shared secret handshakes.
 

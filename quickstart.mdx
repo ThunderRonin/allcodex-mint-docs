@@ -7,7 +7,7 @@ AllCodex can be launched either via **Docker Compose** (recommended for self-hos
 
 ---
 
-## Method 1: Docker Compose (Self-Hosting)
+## Method 1: Docker Compose (self-hosting)
 
 This is the fastest path to running the full AllCodex ecosystem.
 
@@ -16,7 +16,7 @@ This is the fastest path to running the full AllCodex ecosystem.
 - [Docker](https://docs.docker.com/get-docker/) installed.
 - An [OpenRouter API Key](https://openrouter.ai/) (required by AllKnower for AI features).
 
-### 1. Download the Docker Compose File
+### 1. Download the Docker Compose file
 
 Create a directory for AllCodex and download `docker-compose.yml`:
 
@@ -25,7 +25,7 @@ mkdir allcodex-grimoire && cd allcodex-grimoire
 curl -sSL https://raw.githubusercontent.com/ThunderRonin/allcodex-aio/main/docker-compose.yml -o docker-compose.yml
 ```
 
-### 2. Configure Environment Variables
+### 2. Configure environment variables
 
 Create the env directories and configuration files:
 
@@ -39,7 +39,7 @@ Add your `OPENROUTER_API_KEY` to `/etc/allcodex/allknower.env`:
 OPENROUTER_API_KEY=your_api_key_here
 ```
 
-### 3. Launch the Stack
+### 3. Launch the stack
 
 Run the compose file in detached mode:
 
@@ -49,7 +49,7 @@ docker compose up -d
 
 ---
 
-## Method 2: Local Development (mprocs)
+## Method 2: Local development (mprocs)
 
 Use this method if you want to run the codebase from source or contribute to AllCodex.
 
@@ -61,7 +61,7 @@ Use this method if you want to run the codebase from source or contribute to All
 - **PostgreSQL** running locally.
 - **mprocs** (`npm install -g mprocs` or `brew install mprocs`) to orchestrate the services.
 
-### 1. Clone the Repository (with Submodules)
+### 1. Clone the repository (with submodules)
 
 Ensure you pull all submodules during cloning:
 
@@ -70,14 +70,14 @@ git clone --recurse-submodules https://github.com/ThunderRonin/allcodex-aio.git
 cd allcodex-aio
 ```
 
-### 2. Install Dependencies & Build
+### 2. Install dependencies and build
 
 ```bash
 # Install root package & setup submodules
 pnpm install
 ```
 
-### 3. Set Up AllKnower Env
+### 3. Set up AllKnower env
 
 Copy `.env.example` in `allknower` to `.env` and fill in your PostgreSQL URL and OpenRouter key:
 
@@ -89,7 +89,7 @@ bun db:generate && bun db:migrate
 cd ..
 ```
 
-### 4. Run All Services with mprocs
+### 4. Run all services with mprocs
 
 From the repository root directory, run:
 
@@ -104,7 +104,7 @@ This launches:
 
 ---
 
-## Zero-Login Auto-Provisioning
+## Zero-login auto-provisioning
 
 On your very first run, AllCodex performs an automatic boot-chain:
 1. **Core** sets its admin password automatically from environment configurations.
@@ -115,23 +115,23 @@ Simply open your browser to [http://localhost:3000](http://localhost:3000) and y
 
 ---
 
-## Your First Brain Dump
+## Your first brain dump
 
 Once in the Portal, follow these steps to see the AI in action:
 
 <Steps>
-  <Step title="Write or Paste Raw Text">
+  <Step title="Write or paste raw text">
     Click the **Brain Dump** tab in the Portal. Paste a rough description of an NPC, location, or historical event.
     *Example:*
     > "Lord Michael Ashvane is an aging paladin of the Dawn Shield faction. He guards Blackstone Keep in the eastern marches of Solara."
   </Step>
-  <Step title="Process the Dump">
+  <Step title="Process the dump">
     Click **Submit**. You will see the AI start to stream entities (like *Lord Michael Ashvane*, *Dawn Shield*, *Blackstone Keep*, *Solara*) on screen.
   </Step>
-  <Step title="Apply the Lore">
+  <Step title="Apply the lore">
     Click **Apply to Database**. The AI will create separate notes for each entity in AllCodex Core, link them to templates, and attach canonical attributes (like `#loreType = "character"` and `affiliation = "Dawn Shield"`).
   </Step>
-  <Step title="View the Graph">
+  <Step title="View the graph">
     Go to the **Relationship Graph** tab. You'll see the newly created entities connected on an interactive React Flow canvas.
   </Step>
 </Steps>
