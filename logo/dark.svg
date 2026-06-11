@@ -11,7 +11,7 @@
     </linearGradient>
   </defs>
 
-  <svg x="0" y="0" width="24" height="24" viewBox="0 0 200 200">
+  <g transform="scale(0.12)">
     <circle cx="100" cy="100" r="90" fill="url(#glow-dark)" />
     <rect x="45" y="25" width="115" height="150" rx="8" fill="#120f18" stroke="url(#gold-dark)" stroke-width="2" />
     <rect x="35" y="25" width="15" height="150" rx="3" fill="url(#gold-dark)" />
@@ -27,11 +27,11 @@
     <circle cx="102.5" cy="100" r="22" stroke="url(#gold-dark)" stroke-width="1" fill="none" stroke-dasharray="2 2" stroke-opacity="0.8" />
     <path d="M102.5 75 L117.2 120.2 L78.7 92.3 L126.3 92.3 L87.8 120.2 Z" stroke="url(#gold-dark)" stroke-width="1.5" fill="none" stroke-linejoin="round" />
     <circle cx="102.5" cy="100" r="3" fill="url(#gold-dark)" />
-    <circle cx="102.5" cy="67" r="1.5" fill="url(#glow-dark)" />
-    <circle cx="102.5" cy="133" r="1.5" fill="url(#glow-dark)" />
-    <circle cx="69" cy="100" r="1.5" fill="url(#glow-dark)" />
-    <circle cx="136" cy="100" r="1.5" fill="url(#glow-dark)" />
-  </svg>
+    <circle cx="102.5" cy="67" r="1.5" fill="url(#gold-dark)" />
+    <circle cx="102.5" cy="133" r="1.5" fill="url(#gold-dark)" />
+    <circle cx="69" cy="100" r="1.5" fill="url(#gold-dark)" />
+    <circle cx="136" cy="100" r="1.5" fill="url(#gold-dark)" />
+  </g>
   
   <text x="32" y="18" font-family="Cinzel, Georgia, serif" font-size="18" font-weight="bold" fill="#ffffff" letter-spacing="0.08em">AllCodex</text>
 </svg>

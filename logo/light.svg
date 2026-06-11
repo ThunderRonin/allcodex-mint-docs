@@ -11,7 +11,7 @@
     </linearGradient>
   </defs>
 
-  <svg x="0" y="0" width="24" height="24" viewBox="0 0 200 200">
+  <g transform="scale(0.12)">
     <circle cx="100" cy="100" r="90" fill="url(#glow-light)" />
     <rect x="45" y="25" width="115" height="150" rx="8" fill="#120f18" stroke="url(#gold-light)" stroke-width="2" />
     <rect x="35" y="25" width="15" height="150" rx="3" fill="url(#gold-light)" />
@@ -31,7 +31,7 @@
     <circle cx="102.5" cy="133" r="1.5" fill="url(#gold-light)" />
     <circle cx="69" cy="100" r="1.5" fill="url(#gold-light)" />
     <circle cx="136" cy="100" r="1.5" fill="url(#gold-light)" />
-  </svg>
+  </g>
   
   <text x="32" y="18" font-family="Cinzel, Georgia, serif" font-size="18" font-weight="bold" fill="#09090B" letter-spacing="0.08em">AllCodex</text>
 </svg>
